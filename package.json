@@ -1,4 +1,7 @@
 {
+  "scripts":{
+    "dev": "./bin/webpack-dev-server"
+  },
   "dependencies": {
     "@babel/preset-typescript": "^7.16.7",
     "@rails/webpacker": "5.4.3",
