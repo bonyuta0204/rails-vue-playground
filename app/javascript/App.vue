@@ -1,16 +1,33 @@
 <template>
-    <p>{{ message }}</p>
+    <div>
+      <p>{{ message }}</p>
+      <ul style="list-style-type: square">
+        <li v-for="user in users" :key="user.id">
+          {{user.name}}
+        </li>
+      </ul>
+    </div>
 </template>
 
 <script lang="ts">
 
-import {defineComponent, ref} from '@vue/composition-api'
+import {defineComponent, ref, onMounted} from '@vue/composition-api'
 
 export default defineComponent({
   setup(){
     const message = ref('message')
+    const users = ref([])
+
+
+    onMounted(async ()=>{
+      const response = await fetch('ajax/users').then((response)=>response.json())
+      users.value = response
+
+    })
+
     return{
-      message
+      message,
+      users
     }
   }
 })
