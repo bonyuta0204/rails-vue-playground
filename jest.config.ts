@@ -177,6 +177,7 @@ export default {
    transform: {
      // babel-jest で js を処理する
      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+     "^.+\\.tsx?$": "ts-jest",
      ".*\\.(vue)$": "@vue/vue2-jest"
    }
 
