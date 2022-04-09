@@ -6,19 +6,13 @@
 
 <script lang="ts">
 
-import {defineComponent, ref, onMounted} from '@vue/composition-api'
+import {defineComponent, ref} from '@vue/composition-api'
 
 export default defineComponent({
   setup(){
     const message = ref('message')
     const users = ref([])
 
-
-    onMounted(async ()=>{
-      const response = await fetch('ajax/users').then((response)=>response.json())
-      users.value = response
-
-    })
 
     return{
       message,

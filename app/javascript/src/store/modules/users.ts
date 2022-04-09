@@ -1,4 +1,7 @@
-import { Module, MutationTree, ActionTree, GetterTree } from "vuex";
+import { Module, ActionContext } from "vuex";
+import Gateway from '../../lib/gateway'
+
+const gateway = new Gateway()
 
 export interface UsersState {
   users: { id: number; name: string }[];
@@ -23,10 +26,17 @@ const mutations = {
   }
 };
 
-const actions: ActionTree<UsersState, any> = {};
+const actions= {
+  async loadUsers({commit}: ActionContext<UsersState,any>){
+    const response =  await gateway.get('/ajax/users')
+    commit('setUsers', response.data)
+    return response
+  }
+};
 
 export type UsersGetters = typeof getters
 export type UsersMutations = typeof mutations
+export type UsersActions = typeof actions
 
 export const users: Module<UsersState, any> = {
   namespaced,

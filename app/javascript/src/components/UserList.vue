@@ -3,16 +3,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
-import {
-  UsersState,
-  UsersGetters,
-  UsersMutations,
-} from "../store/modules/users";
+import { defineComponent, onMounted } from "@vue/composition-api";
+import { UsersState, UsersGetters, UsersActions } from "../store/modules/users";
 import {
   useNamespacedState,
   useNamespacedGetters,
-  useNamespacedMutations,
+  useNamespacedActions,
 } from "vuex-composition-helpers";
 
 export default defineComponent({
@@ -22,10 +18,16 @@ export default defineComponent({
       "userNames",
     ]);
 
-    const { setUsers } = useNamespacedMutations<UsersMutations>("users", [
-      "setUsers",
+    const { loadUsers } = useNamespacedActions<UsersActions>("users", [
+      "loadUsers",
     ]);
+
+    onMounted(() => {
+      loadUsers();
+    });
+
     return {
+      users,
       userNames,
     };
   },
