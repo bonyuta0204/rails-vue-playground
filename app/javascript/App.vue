@@ -1,11 +1,6 @@
 <template>
     <div>
-      <p>{{ message }}</p>
-      <ul style="list-style-type: square">
-        <li v-for="user in users" :key="user.id">
-          {{user.name}}
-        </li>
-      </ul>
+      <router-view></router-view>
     </div>
 </template>
 
