@@ -1,35 +1,37 @@
-import { mount, createLocalVue } from '@vue/test-utils'
-import UserList from '../../src/components/UserList.vue'
-import Vuex from 'vuex'
+import { mount, createLocalVue } from "@vue/test-utils";
+import UserList from "../../src/components/UserList.vue";
+import Vuex from "vuex";
 
-import VueCompositionApi from '@vue/composition-api'
+import VueCompositionApi from "@vue/composition-api";
 
-  let store
+let store;
 
-  beforeEach(() => {
-    let usersActions = {
-      loadUsers: jest.fn(),
-    }
-    store = new Vuex.Store({
-      modules: {
-        users: {
-          namespaced: true,
-          actions: usersActions
-        }
-      }
-    })
-  })
+let usersActions = {
+  loadUsers: jest.fn(),
+};
 
-const localVue = createLocalVue()
-localVue.use(VueCompositionApi)
-localVue.use(Vuex)
+beforeEach(() => {
+  store = new Vuex.Store({
+    modules: {
+      users: {
+        namespaced: true,
+        actions: usersActions,
+      },
+    },
+  });
+});
 
-describe('UserList', () => {
-  test('load Users when mounted', () => {
+const localVue = createLocalVue();
+localVue.use(VueCompositionApi);
+localVue.use(Vuex);
+
+describe("UserList", () => {
+  test("load Users when mounted", () => {
     const wrapper = mount(UserList, {
       store,
-      localVue
-    })
-    expect(wrapper.vm).toBeTruthy()
-  })
-})
+      localVue,
+    });
+    expect(wrapper.vm).toBeTruthy();
+    expect(usersActions.loadUsers).toHaveBeenCalled();
+  });
+});
