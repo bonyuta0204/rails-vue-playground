@@ -82,7 +82,9 @@ export default {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    'vuex-composition-helpers': '<rootDir>/node_modules/vuex-composition-helpers/dist/index.js'
+    'vuex-composition-helpers': '<rootDir>/node_modules/vuex-composition-helpers/dist/index.js',
+    '^i18next$': '<rootDir>/node_modules/i18next/dist/esm/i18next.js',
+    'i18next-sprintf-postprocessor': '<rootDir>/node_modules/i18next-sprintf-postprocessor/dist/es/index.js'
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
