@@ -8,7 +8,6 @@ export class Client {
   }
 
   folderSidebar() {
-    const sidebarEl = cy.get('.un_folderSidebar')
-    return new FolderSidebar(this.cy, sidebarEl);
+    return new FolderSidebar(this.cy, () => cy.get(".un_folderSidebar"));
   }
 }

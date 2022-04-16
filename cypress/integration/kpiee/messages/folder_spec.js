@@ -54,17 +54,23 @@ describe("Folders in Message Page", () => {
   it("Can Display Folders", () => {
     cy.visit("workspaces/1/tips/messages");
 
-    client
-      .folderSidebar()
-      .folderLabelByName("親フォルダ_1")
-      .should("be.visible");
-    client
-      .folderSidebar()
-      .folderLabelByName("親フォルダ_2")
+    const folderSidebar = client.folderSidebar();
+
+    const parentFolder1 = folderSidebar.folderItemByName("親フォルダ_1");
+
+    const parentFolder2 = folderSidebar.folderItemByName("親フォルダ_2");
+
+    parentFolder1.targetElemnt().should("be.visible");
+    parentFolder2.targetElemnt().should("be.visible");
+
+    parentFolder1.toggleOpen();
+
+    folderSidebar
+      .folderItemByName("子フォルダ_1")
+      .targetElemnt()
       .should("be.visible");
 
-    cy.contains("子フォルダ_1").should("not.exist");
-    client.folderSidebar().folderItemByName("親フォルダ_1").toggleOpen();
-    cy.contains("子フォルダ_1").should("be.visible");
+    parentFolder1.togglePopover();
+    parentFolder1.openFolderMoveModal();
   });
 });
