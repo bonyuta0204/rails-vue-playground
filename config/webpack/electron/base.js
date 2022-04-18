@@ -6,8 +6,15 @@ const main = {
   mode: "development",
   target: "electron-main",
 
+  resolve: {
+    extensions: [".js", ".ts"],
+  },
+
   entry: {
-    main: path.resolve("./src/main.js"), //エントリーポイント
+    main: path.resolve("./src/main.ts"), //エントリーポイント
+  },
+  module: {
+    rules: [{ test: /\.tsx?$/, loader: "ts-loader" }],
   },
   output: {
     filename: "[name].js", //自動出力するファイル

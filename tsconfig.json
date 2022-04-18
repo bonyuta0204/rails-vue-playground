@@ -11,11 +11,11 @@
         "*": ["node_modules/*", "app/javascript/*"]
     },
     "sourceMap": true,
-    "target": "es5",
-    "noEmit": true
+    "target": "es5"
   },
   "exclude": [
     "**/*.spec.ts",
+    "cypress",
     "node_modules",
     "vendor",
     "public"

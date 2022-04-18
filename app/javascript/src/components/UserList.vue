@@ -1,5 +1,8 @@
 <template>
-  <p>{{ userNames }}</p>
+  <div>
+    <p>{{ userNames }}</p>
+    <button @click="onClickNotification">通知する</button>
+  </div>
 </template>
 
 <script lang="ts">
@@ -22,6 +25,10 @@ export default defineComponent({
       "loadUsers",
     ]);
 
+    function onClickNotification() {
+      console.log("onClickNotification");
+    }
+
     onMounted(() => {
       loadUsers();
     });
@@ -29,6 +36,7 @@ export default defineComponent({
     return {
       users,
       userNames,
+      onClickNotification,
     };
   },
 });

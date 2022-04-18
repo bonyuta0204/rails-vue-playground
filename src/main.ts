@@ -1,8 +1,6 @@
-// main.js
-
 // Modules to control application life and create native browser window
-const { app, protocol, BrowserWindow } = require("electron");
-const path = require("path");
+import { app, protocol, BrowserWindow } from "electron";
+import { resolve } from "path";
 
 const createWindow = () => {
   // Create the browser window.
@@ -26,20 +24,10 @@ protocol.registerSchemesAsPrivileged([
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  protocol.registerFileProtocol(
-    "app",
-    (request, callback) => {
-      const url = request.url.substr(10);
-      console.log('url', url)
-      console.log('path',  path.resolve("./dist", url) )
-      callback({ path: path.resolve("./dist", url) });
-    },
-    (error) => {
-      if (error) {
-        console.error("Failed to register protocol");
-      }
-    }
-  );
+  protocol.registerFileProtocol("app", (request, callback) => {
+    const url = request.url.substr(10);
+    callback({ path: resolve("./dist", url) });
+  });
   createWindow();
 
   app.on("activate", () => {
