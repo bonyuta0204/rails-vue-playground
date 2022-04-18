@@ -26,7 +26,7 @@ export default defineComponent({
     ]);
 
     function onClickNotification() {
-      console.log("onClickNotification");
+      window.notifier.notify({ title: "通知だよ", subtitle: "補足だよ", body: "ここが本文だよ" });
     }
 
     onMounted(() => {
