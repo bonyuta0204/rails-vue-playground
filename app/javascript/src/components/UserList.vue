@@ -8,6 +8,8 @@
 <script lang="ts">
 import { defineComponent, onMounted } from "@vue/composition-api";
 import { UsersState, UsersGetters, UsersActions } from "../store/modules/users";
+
+import { buildNotifier } from "../lib/notifier";
 import {
   useNamespacedState,
   useNamespacedGetters,
@@ -26,7 +28,20 @@ export default defineComponent({
     ]);
 
     function onClickNotification() {
-      window.notifier.notify({ title: "通知だよ", subtitle: "補足だよ", body: "ここが本文だよ" });
+      const notifyEletron = buildNotifier("electron");
+      notifyEletron({
+        title: "通知だよ",
+        subtitle: "補足だよ",
+        body: "ここが本文だよ",
+      });
+
+      const notifyBrowser = buildNotifier("browser");
+
+      notifyBrowser({
+        title: "通知だよ",
+        subtitle: "補足だよ",
+        body: "ここが本文だよ",
+      });
     }
 
     onMounted(() => {
