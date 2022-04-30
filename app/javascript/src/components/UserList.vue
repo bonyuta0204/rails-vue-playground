@@ -1,10 +1,15 @@
 <template>
-  <p>{{ userNames }}</p>
+  <div>
+    <p>{{ userNames }}</p>
+    <button @click="onClickNotification">通知する</button>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from "@vue/composition-api";
 import { UsersState, UsersGetters, UsersActions } from "../store/modules/users";
+
+import { buildNotifier } from "../lib/notifier";
 import {
   useNamespacedState,
   useNamespacedGetters,
@@ -22,6 +27,23 @@ export default defineComponent({
       "loadUsers",
     ]);
 
+    function onClickNotification() {
+      const notifyEletron = buildNotifier("electron");
+      notifyEletron({
+        title: "通知だよ",
+        subtitle: "補足だよ",
+        body: "ここが本文だよ",
+      });
+
+      const notifyBrowser = buildNotifier("browser");
+
+      notifyBrowser({
+        title: "通知だよ",
+        subtitle: "補足だよ",
+        body: "ここが本文だよ",
+      });
+    }
+
     onMounted(() => {
       loadUsers();
     });
@@ -29,6 +51,7 @@ export default defineComponent({
     return {
       users,
       userNames,
+      onClickNotification,
     };
   },
 });
