@@ -26,6 +26,8 @@ gem 'ridgepole'
 
 gem 'mysql2'
 
+gem 'gemoji',  '>= 4.0.0.rc3'
+
 gem "sentry-ruby"
 gem "sentry-rails"
 

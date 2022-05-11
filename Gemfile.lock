@@ -83,6 +83,7 @@ GEM
     diffy (3.4.0)
     erubi (1.10.0)
     ffi (1.15.5)
+    gemoji (4.0.0.rc3)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -227,6 +228,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  gemoji (>= 4.0.0.rc3)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2
