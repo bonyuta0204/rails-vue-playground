@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <div class="chart_wrapper">
-      <highcharts :options="chartOptions"></highcharts>
+      <highcharts key="uid" :options="chartOptions"></highcharts>
     </div>
-    <div id="monaco" class="editor_body"></div>
+    <div class="editor_wrapper">
+      <div class="tool_bar">
+        <button @click="onClickApply">適用</button>
+      </div>
+      <div id="monaco" class="editor_body"></div>
+    </div>
   </div>
 </template>
 
@@ -26,25 +31,27 @@ export default defineComponent({
         value: chartOption.value,
         language: "javascript",
       });
-
-      editor.onDidChangeModelContent(function (e) {
-        const value = editor.getModel().getValue()
-        chartOption.value = value
-      });
-      console.log(editor);
     });
 
     const chartOption = ref("{series: [{data: [1,2,3]}]}");
 
-    const chartOptions = {
+    const onClickApply = () => {
+      const chatOptionString = editor.getModel().getValue();
+
+      const applyCommand = `chartOptions.value = ${chatOptionString}`;
+
+      eval(applyCommand);
+    };
+
+    const chartOptions = ref({
       series: [
         {
           data: [1, 2, 3],
         },
       ],
-    };
+    });
 
-    return { chartOptions };
+    return { chartOptions, onClickApply };
   },
 });
 </script>
@@ -52,6 +59,7 @@ export default defineComponent({
 <style scoped>
 .container {
   display: flex;
+  height: calc(100vh - 40px);
 }
 
 .chart_wrapper {
@@ -63,8 +71,16 @@ export default defineComponent({
 }
 
 .editor_body {
+  height: 100%;
+}
+
+.tool_bar {
+  padding-left: 60px;
+  height: 30px;
+}
+.editor_wrapper {
   width: 50%;
-  height: 45vh;
+  height: 100%;
 }
 
 p {
