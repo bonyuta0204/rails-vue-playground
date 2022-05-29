@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="chart_wrapper">
-      <div id="chart_container"></div>
+      <div id="container"></div>
     </div>
     <div class="editor_wrapper">
       <div class="tool_bar">
@@ -132,7 +132,7 @@ export default defineComponent({
     let editor: monaco.editor.IStandaloneCodeEditor | null = null;
 
     const chartScript = ref(
-      `Highcharts.chart('chart_container', ${JSON.stringify(
+      `Highcharts.chart('container', ${JSON.stringify(
         defaultOption,
         null,
         2
