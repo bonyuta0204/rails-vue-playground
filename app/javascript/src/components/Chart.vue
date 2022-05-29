@@ -17,6 +17,8 @@ import * as monaco from "monaco-editor";
 import { defineComponent, onMounted, ref } from "@vue/composition-api";
 import Highcharts from "highcharts";
 import seriesLabel from "highcharts/modules/series-label";
+import prettier from "prettier";
+import parserBabel from "prettier/parser-babel";
 
 // NOTE: new Functionで生成する関数はグローバルな変数にしかアクセスできないため
 // Highchartsをグローバル変数として定義する必要がある
@@ -137,6 +139,11 @@ export default defineComponent({
       )})`
     );
 
+    chartScript.value = prettier.format(chartScript.value, {
+      parser: "babel",
+      plugins: [parserBabel],
+    });
+
     onMounted(() => {
       const editorElement = document.getElementById("monaco");
 
@@ -150,8 +157,6 @@ export default defineComponent({
 
     const executeChartScript = () => {
       const renderFunc = new Function(chartScript.value);
-      console.log(renderFunc);
-      debugger;
       renderFunc();
     };
 
