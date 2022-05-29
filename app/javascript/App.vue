@@ -1,6 +1,11 @@
 <template>
-    <div>
-      <router-view></router-view>
+  <div>
+      <div class="header_container">
+        <router-link class="header_link" :to="{name: 'chart'}">Chart</router-link>
+      </div>
+      <div>
+        <router-view></router-view>
+      </div>
     </div>
 </template>
 
@@ -23,6 +28,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.header_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+
+.header_link {
+  font-size: 20px
+}
+
 p {
   font-size: 2em;
   text-align: center;
