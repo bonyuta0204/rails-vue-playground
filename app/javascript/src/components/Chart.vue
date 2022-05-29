@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="chart_wrapper">
-      <highcharts key="uid" :options="chartOptions"></highcharts>
+      <div id="chart_container"></div>
     </div>
     <div class="editor_wrapper">
       <div class="tool_bar">
@@ -15,9 +15,12 @@
 <script lang="ts">
 import * as monaco from "monaco-editor";
 import { defineComponent, onMounted, ref } from "@vue/composition-api";
-import { Chart } from "highcharts-vue";
 import Highcharts from "highcharts";
 import seriesLabel from "highcharts/modules/series-label";
+
+// NOTE: new Functionで生成する関数はグローバルな変数にしかアクセスできないため
+// Highchartsをグローバル変数として定義する必要がある
+window.Highcharts = Highcharts;
 
 const defaultOption = {
   chart: {
@@ -121,36 +124,44 @@ const defaultOption = {
 };
 
 export default defineComponent({
-  components: {
-    highcharts: Chart,
-  },
   setup() {
     seriesLabel(Highcharts);
 
     let editor: monaco.editor.IStandaloneCodeEditor | null = null;
 
+    const chartScript = ref(
+      `Highcharts.chart('chart_container', ${JSON.stringify(
+        defaultOption,
+        null,
+        2
+      )})`
+    );
+
     onMounted(() => {
       const editorElement = document.getElementById("monaco");
 
       editor = monaco.editor.create(editorElement, {
-        value: chartOption.value,
-        language: "json",
+        value: chartScript.value,
+        language: "javascript",
       });
+
+      executeChartScript();
     });
 
-    const chartOption = ref(JSON.stringify(defaultOption, null, 2));
-
-    const onClickApply = () => {
-      const chatOptionString = editor.getModel().getValue();
-
-      const applyCommand = `chartOptions.value = ${chatOptionString}`;
-
-      eval(applyCommand);
+    const executeChartScript = () => {
+      const renderFunc = new Function(chartScript.value);
+      console.log(renderFunc);
+      debugger;
+      renderFunc();
     };
 
-    const chartOptions = ref(defaultOption);
+    const onClickApply = () => {
+      chartScript.value = editor.getModel().getValue();
 
-    return { chartOptions, onClickApply };
+      executeChartScript();
+    };
+
+    return { onClickApply };
   },
 });
 </script>
