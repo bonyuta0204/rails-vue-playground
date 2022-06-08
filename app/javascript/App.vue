@@ -2,6 +2,7 @@
   <div>
       <div class="header_container">
         <router-link class="header_link" :to="{name: 'chart'}">Chart</router-link>
+        <router-link class="header_link" :to="{name: 'heavy'}">Heavy</router-link>
       </div>
       <div>
         <router-view></router-view>
