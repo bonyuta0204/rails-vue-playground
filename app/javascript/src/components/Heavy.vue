@@ -1,7 +1,23 @@
 <template>
   <div class="page">
-    <div class="item_wrapper" v-for="n in 300" :key="n">
-      <heavy-item v-if="defer(n / 10)"></heavy-item>
+    <div class="container_wrap">
+      <div class="container">
+        <button @click="onClickFirst">toggle</button>
+        <div class="item_wrapper" v-if="firstVisible" v-for="n in 300" :key="n">
+          <heavy-item v-if="firstDefer(n)"></heavy-item>
+        </div>
+      </div>
+      <div class="container">
+        <button @click="onClickSecond">toggle</button>
+        <div
+          class="item_wrapper"
+          v-if="secondVisible"
+          v-for="n in 300"
+          :key="n"
+        >
+          <heavy-item v-if="secondDefer(n)"></heavy-item>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -16,8 +32,31 @@ export default defineComponent({
     HeavyItem,
   },
   setup() {
-    const { defer } = useDefer();
-    return { defer };
+    const firstVisible = ref(true);
+    const secondVisible = ref(true);
+
+    const { defer: firstDefer, resetFrame: resetFirstFrame } = useDefer();
+
+    const { defer: secondDefer, resetFrame: resetSecondFrame } = useDefer();
+
+    function onClickFirst() {
+      resetFirstFrame();
+      firstVisible.value = !firstVisible.value;
+    }
+
+    function onClickSecond() {
+      resetSecondFrame();
+      secondVisible.value = !secondVisible.value;
+    }
+
+    return {
+      onClickFirst,
+      onClickSecond,
+      firstVisible,
+      secondVisible,
+      firstDefer,
+      secondDefer,
+    };
   },
 });
 </script>
@@ -26,5 +65,14 @@ export default defineComponent({
 p {
   font-size: 2em;
   text-align: center;
+}
+
+.container_wrap {
+  display: flex;
+}
+
+.container {
+  width: 50%;
+  flex-direction: row;
 }
 </style>
