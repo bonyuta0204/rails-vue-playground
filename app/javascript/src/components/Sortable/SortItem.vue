@@ -1,12 +1,15 @@
 <template>
   <div
     class="list-item"
+    :class="{ 'is-dragover': isDragover }"
     draggable="true"
     @dragstart="$emit('dragstart', $event)"
+    @dragend="$emit('dragend', $event)"
     @dragenter="onDragEnter"
     @dragover="onDragOver"
+    @drop="onDrop"
   >
-    {{ name }}
+    {{ name }} {{mousePosition ? mousePosition : ''}}
   </div>
 </template>
 
@@ -18,6 +21,12 @@ export default defineComponent({
     name: {
       type: String,
     },
+    isDragover: {
+      type: Boolean,
+    },
+    mousePosition: {
+      type: [String, Boolean],
+    }
   },
   setup(_, { emit }) {
     function onDragEnter(event: DragEvent) {
@@ -30,9 +39,15 @@ export default defineComponent({
       emit("dragover", event);
     }
 
+    function onDrop(event: DragEvent){
+      event.preventDefault();
+      emit("drop", event);
+    }
+
     return {
       onDragEnter,
       onDragOver,
+      onDrop
     };
   },
 });
@@ -46,5 +61,9 @@ export default defineComponent({
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.is-dragover {
+  background-color: #fbdcdc !important;
 }
 </style>

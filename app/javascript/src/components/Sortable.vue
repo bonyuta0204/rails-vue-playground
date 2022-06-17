@@ -3,9 +3,13 @@
     <ul id="items" v-for="item in items" :key="item.id">
       <sort-item
         :name="item.label"
+        :is-dragover="isDragover(item)"
+        :mouse-position="isDragover(item) && dragTargetPosition"
         @dragstart="onDragStart($event, item)"
+        @dragend="onDragEnd($event, item)"
         @dragenter="onDragEnter($event, item)"
         @dragover="onDragOver($event, item)"
+        @drop="onDrop($event, item)"
       ></sort-item>
     </ul>
   </div>
@@ -14,7 +18,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, Ref } from "@vue/composition-api";
 // Default SortableJS
-import Sortable from "sortablejs/modular/sortable.esm.js";
 import SortItem from "./Sortable/SortItem.vue";
 
 type Item = { id: number; label: string };
@@ -41,6 +44,12 @@ export default defineComponent({
       draggingItem.value = item;
     }
 
+    function onDragEnd(_: DragEvent) {
+      draggingItem.value = undefined;
+      dragTargetItem.value = undefined;
+      dragTargetPosition.value = undefined;
+    }
+
     function onDragEnter(_: DragEvent, item: Item) {
       dragTargetItem.value = item;
     }
@@ -58,13 +67,37 @@ export default defineComponent({
       }
     }
 
+    function isDragover(item: Item) {
+      return dragTargetItem.value && dragTargetItem.value.id === item.id;
+    }
+
+    function onDrop(_: DragEvent) {
+      handleDrop(
+        draggingItem.value,
+        dragTargetItem.value,
+        dragTargetPosition.value
+      );
+    }
+
+    function handleDrop(
+      srcItem: Item,
+      targetItem: Item,
+      targetPosition: "up" | "down"
+    ) {
+      console.log(`move from ${srcItem.label} to ${targetItem.label}. position: ${targetPosition}`);
+    }
+
     return {
       items,
-      onDragStart,
+      isDragover,
+      onDragEnd,
       onDragEnter,
       onDragOver,
+      onDragStart,
+      onDrop,
       draggingItem,
       dragTargetItem,
+      dragTargetPosition,
     };
   },
 });
