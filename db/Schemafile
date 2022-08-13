@@ -1,7 +1,23 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-create_table "users", force: :cascade do |t|
-  t.string   "name",                     null: false
-  t.datetime "created_at", precision: 6, null: false
-  t.datetime "updated_at", precision: 6, null: false
+create_table 'users', force: :cascade do |t|
+  t.string   'name',                     null: false
+  t.datetime 'created_at', precision: 6, null: false
+  t.datetime 'updated_at', precision: 6, null: false
+end
+
+create_table 'channels', force: :cascade do |t|
+  t.string   'name',                     null: false
+  t.datetime 'created_at', precision: 6, null: false
+  t.datetime 'updated_at', precision: 6, null: false
+end
+
+create_table 'messages', force: :cascade do |t|
+  t.string   'content',                  null: false
+  t.bigint   'channel_id',               null: false
+  t.bigint   'created_by',               null: false
+  t.datetime 'created_at', precision: 6, null: false
+  t.datetime 'updated_at', precision: 6, null: false
+  add_foreign_key 'messages', 'users', column: 'created_by', name: 'fk_messages_on_users'
+  add_foreign_key 'messages', 'channels',                    name: 'fk_messages_on_channels'
 end
