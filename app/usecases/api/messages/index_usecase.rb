@@ -10,7 +10,7 @@ module Api
 
       def call
         messages = ::Messages::IndexService.new(@channel_id).execute
-        [:ok, messages]
+        [:ok, MessageBlueprint.render_as_json(messages)]
       end
     end
   end
