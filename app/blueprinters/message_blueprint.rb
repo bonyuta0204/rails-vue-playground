@@ -6,4 +6,5 @@ class MessageBlueprint < Blueprinter::Base
   field :created_at
 
   association :sender, blueprint: UserBlueprint
+  association :channel, blueprint: ChannelBlueprint
 end

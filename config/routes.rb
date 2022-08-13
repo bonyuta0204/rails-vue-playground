@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     resources :channels do
       resources :messages, only: [:index]
     end
+
+    resources :message_lists,  only: [:index]
   end
+
 
   get ':url', to: 'vue_application#index', constraints: { url: /.*/ }, as: :vue_application
 end

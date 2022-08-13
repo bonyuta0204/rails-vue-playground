@@ -8,7 +8,7 @@ module Messages
     end
 
     def execute
-      channel&.messages
+      channel&.messages&.with_includes
     end
 
     private
