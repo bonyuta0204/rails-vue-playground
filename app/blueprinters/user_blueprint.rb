@@ -2,6 +2,10 @@
 
 # user blue print
 class UserBlueprint < Blueprinter::Base
-  field :id
+  field :id do |user|
+    user.id.to_s
+  end
   field :name
+
+  field :avatar_url
 end
