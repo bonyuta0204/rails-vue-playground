@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Api
   module Messages
+    # Messages Index usecase
     class IndexUsecase
       def initialize(params)
         @channel_id = params[:channel_id]
