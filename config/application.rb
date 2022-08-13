@@ -31,5 +31,6 @@ module RailsVuePlayground
     #
     # config.time_zone = "Central Time (US & Canada)"
     config.eager_load_paths << Rails.root.join('usecases')
+    config.eager_load_paths << Rails.root.join('services')
   end
 end

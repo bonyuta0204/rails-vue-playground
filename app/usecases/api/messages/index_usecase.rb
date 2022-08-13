@@ -9,15 +9,8 @@ module Api
       end
 
       def call
-        [:ok, channel&.messages]
-      end
-
-      private
-
-      attr_reader :channel_id
-
-      def channel
-        @channel ||= Channel.find(channel_id)
+        messages = ::Messages::IndexService.new(@channel_id).execute
+        [:ok, messages]
       end
     end
   end
