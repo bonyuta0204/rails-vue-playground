@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "../App.vue";
 import store from "../src/store";
 import router from "../src/router";
+import { logger } from '@sentry/utils';
 
 import * as Sentry from "@sentry/vue";
 
@@ -13,7 +14,7 @@ Vue.use(VueCompositionAPI);
 
 Sentry.init({
   Vue,
-  dsn: "https://59cc80263f9743cb8b99054b2ecf5ec9@o1209044.ingest.sentry.io/6342400",
+  dsn: "https://c01dd0c782cd44a09f951de424346573@o1209044.ingest.sentry.io/6342430",
 
   integrations: [
     new BrowserTracing({
@@ -28,6 +29,7 @@ Sentry.init({
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  logger.enable()
   new Vue({
     components: { App },
     template: "<App/>",
