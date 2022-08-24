@@ -7,15 +7,22 @@
       <div>
         <router-view></router-view>
       </div>
+      <global-modal></global-modal>
     </div>
 </template>
 
 <script lang="ts">
 
 import {defineComponent, ref} from '@vue/composition-api'
+import GlobalModal from "./src/components/modals/GlobalModal.vue"
+import {provideModalStore} from "./src/composables/useModalStore"
 
 export default defineComponent({
+  components: {
+    GlobalModal
+  },
   setup(){
+    provideModalStore()
     const message = ref('message')
     const users = ref([])
 

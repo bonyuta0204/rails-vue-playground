@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "../App.vue";
 import store from "../src/store";
 import router from "../src/router";
+import {BootstrapVue} from "bootstrap-vue"
 import { logger } from '@sentry/utils';
 
 import * as Sentry from "@sentry/vue";
@@ -11,6 +12,14 @@ import { BrowserTracing } from "@sentry/tracing";
 import VueCompositionAPI from "@vue/composition-api";
 
 Vue.use(VueCompositionAPI);
+
+
+// Import Bootstrap and BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
 
 Sentry.init({
   Vue,
