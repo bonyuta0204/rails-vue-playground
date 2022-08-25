@@ -2,7 +2,6 @@
   <div>
     <p>{{ userNames }}</p>
     <button @click="onClick">open modal</button>
-    <user-show-modal>open modal</user-show-modal>
   </div>
 </template>
 
@@ -18,10 +17,7 @@ import {
 } from "vuex-composition-helpers";
 
 export default defineComponent({
-  components: {
-    UserShowModal,
-  },
-  setup(_, { root: { $bvModal } }) {
+  setup() {
     const { users } = useNamespacedState<UsersState>("users", ["users"]);
     const { userNames } = useNamespacedGetters<UsersGetters>("users", [
       "userNames",
@@ -34,9 +30,18 @@ export default defineComponent({
     ]);
 
     const onClick = () => {
-      console.log("onClick");
-      openModal(UserShowModal, { modalTitle: "hoge" });
-      //$bvModal.show('user-show-modal')
+      openModal(UserShowModal, {
+        modalTitle: "test modal title",
+        onHide: () => {
+          console.log("modal hidden");
+        },
+        onCancel: () => {
+          console.log("onCancel");
+        },
+        onOk: () => {
+          console.log("onOk");
+        },
+      });
     };
 
     onMounted(() => {

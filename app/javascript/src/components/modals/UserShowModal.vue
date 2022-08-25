@@ -1,11 +1,11 @@
 <template>
-  <b-modal id="user-show-modal" v-model="value">
-    <div>{{modalTitle}}</div>
+  <b-modal id="user-show-modal" v-model="value" @hide="onHide" @ok="onOk" @cancel="onCancel">
+    <div>{{ modalTitle }}</div>
   </b-modal>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, PropType } from "@vue/composition-api";
 import { BModal } from "bootstrap-vue";
 
 export default defineComponent({
@@ -14,7 +14,17 @@ export default defineComponent({
   props: {
     modalTitle: {
       type: String,
-    }
+      required: true,
+    },
+    onHide: {
+      type: Function as PropType<() => void>,
+    },
+    onOk: {
+      type: Function as PropType<() => void>,
+    },
+    onCancel: {
+      type: Function as PropType<() => void>,
+    },
   },
   setup(_, { attrs }) {
     const { value } = attrs;
