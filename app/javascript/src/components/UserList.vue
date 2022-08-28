@@ -3,27 +3,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "@vue/composition-api";
-import { UsersState, UsersGetters, UsersActions } from "../store/modules/users";
-import {
-  useNamespacedState,
-  useNamespacedGetters,
-  useNamespacedActions,
-} from "vuex-composition-helpers";
+import useSWRV from "swrv";
+import Gateway from "../lib/gateway";
+
+import { computed, defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   setup() {
-    const { users } = useNamespacedState<UsersState>("users", ["users"]);
-    const { userNames } = useNamespacedGetters<UsersGetters>("users", [
-      "userNames",
-    ]);
+    type User = {
+      id: string;
+      name: string;
+      avatar_url: string;
+      created_at: string;
+      updated_at: string;
+    };
 
-    const { loadUsers } = useNamespacedActions<UsersActions>("users", [
-      "loadUsers",
-    ]);
+    const gateway = new Gateway();
 
-    onMounted(() => {
-      loadUsers();
+    const { data: users } = useSWRV<User[]>("/ajax/users", gateway.get);
+
+    const userNames = computed<User["name"][]>(() => {
+      if (!users.value) return [];
+      return users.value.map((user) => user.name);
     });
 
     return {

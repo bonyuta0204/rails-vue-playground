@@ -15,6 +15,7 @@ Vue.use(VueCompositionAPI);
 Sentry.init({
   Vue,
   dsn: "https://c01dd0c782cd44a09f951de424346573@o1209044.ingest.sentry.io/6342430",
+  logErrors: true,
 
   integrations: [
     new BrowserTracing({
@@ -29,7 +30,7 @@ Sentry.init({
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  logger.enable()
+  // logger.enable()
   new Vue({
     components: { App },
     template: "<App/>",
