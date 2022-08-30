@@ -2,8 +2,12 @@
   <div class="channel_side_bar">
     <div class="channel_side_bar_header">チャンネル一覧</div>
     <div class="channel_side_bar_body">
-      <div v-for="channel in channels" :key="channel">
-        {{ channel }}
+      <div
+        v-for="channel in channels"
+        :key="channel.id"
+        @click="onClickChannel(channel.id)"
+      >
+        {{ channel.name }}
       </div>
     </div>
   </div>
@@ -13,15 +17,23 @@
 import useSWRV from "swrv";
 import Gateway from "../lib/gateway";
 
-import { computed, defineComponent } from "@vue/composition-api";
+import { computed, defineComponent, PropType } from "@vue/composition-api";
+import { Channel } from "src/types/channel";
 
 export default defineComponent({
   name: "ChannelSideBar",
-  setup() {
-    const channels = ["hoge", "fuga"];
-
+  props: {
+    channels: {
+      type: Array as PropType<Channel[]>,
+      default: () => [],
+    },
+  },
+  setup(_, { emit }) {
+    function onClickChannel(channelId: Channel["id"]) {
+      emit("on-select-channel", channelId);
+    }
     return {
-      channels,
+      onClickChannel,
     };
   },
 });
