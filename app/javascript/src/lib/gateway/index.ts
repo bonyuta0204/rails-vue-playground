@@ -5,10 +5,9 @@ axios.defaults.baseURL = 'http://localhost:3000';
 export default class {
   constructor() {}
 
-  async get(url: string, params={}) {
-    const response = await axios.get(url, {params});
+  async get<T = any>(url: string, params={}) {
+    return axios.get<T>(url, {params}).then((response)=>response.data)
 
-    return response
   }
 
   async post(url: string, body: object) {
