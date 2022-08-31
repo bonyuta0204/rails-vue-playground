@@ -19,7 +19,6 @@ export default defineComponent({
     const messageFilterCondition = ref<MessageFilterCondition>("tip");
 
     function reloadTips() {
-      console.log("tips reloaded");
     }
 
     function onSelectAll() {

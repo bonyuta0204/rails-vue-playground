@@ -35,9 +35,7 @@ export function changeCondition(
   tipIds: Ref<number[]>
 ) {
   if (shouldReloadTips(oldCondition, newCondition)) {
-    console.log(tipIds)
     callback();
-    console.log(tipIds)
     return tipIds
   }
 }

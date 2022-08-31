@@ -1,31 +1,40 @@
-import VueRouter, {RouteConfig} from 'vue-router'
-import Vue from 'vue'
+import VueRouter, { RouteConfig } from "vue-router";
+import Vue from "vue";
 
+import UserList from "../components/UserList.vue";
+import Chart from "../components/Chart.vue";
+import Heavy from "../components/Heavy.vue";
+import MessageIndex from "../components/messages/Index.vue";
 
-import UserList from '../components/UserList.vue'
-import Chart from '../components/Chart.vue'
-import Heavy from '../components/Heavy.vue'
-
-Vue.use(VueRouter)
-
+Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
   {
-    path: '/users', component: UserList
+    path: "/users",
+    component: UserList,
   },
   {
-    path: '/chart', component: Chart, name: "chart"
+    path: "/messages",
+    component: MessageIndex,
+    name: "message"
   },
   {
-    path: '/heavy', component: Heavy, name: "heavy"
+    path: "/chart",
+    component: Chart,
+    name: "chart",
   },
   {
-    path: '*', component: UserList
+    path: "/heavy",
+    component: Heavy,
+    name: "heavy",
   },
-]
+  {
+    path: "*",
+    component: UserList,
+  },
+];
 
-
-export default  new VueRouter({
-  mode: 'history',
-  routes
-})
+export default new VueRouter({
+  mode: "history",
+  routes,
+});
