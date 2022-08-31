@@ -55,6 +55,7 @@ export default defineComponent({
 }
 
 .channel_side_bar_body {
+  overflow: scroll;
   background-color: #fff;
   border: 2px solid #ebebeb;
   color: #545454;
