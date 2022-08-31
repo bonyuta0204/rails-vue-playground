@@ -14,11 +14,11 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-    - '.git/**/*'
-    - 'bin/**/*'
-    - 'config/**/*'
-    - 'db/**/*'
-    - 'node_modules/**/*'
-    - 'tmp/**/*'
-    - 'vendor/**/*'
-    - 'script/**/*'
+    - ".git/**/*"
+    - "bin/**/*"
+    - "config/**/*"
+    - "db/**/*"
+    - "node_modules/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "script/**/*"

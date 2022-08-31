@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "../App.vue";
 import store from "../src/store";
 import router from "../src/router";
-import { logger } from '@sentry/utils';
+import { logger } from "@sentry/utils";
 
 import * as Sentry from "@sentry/vue";
 

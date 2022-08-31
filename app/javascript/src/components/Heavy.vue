@@ -20,7 +20,7 @@
       </div>
       <div class="container">
         <button @click="onClickThird">toggle</button>
-        <defer v-if="thirdVisible" v-slot='{defer}'>
+        <defer v-if="thirdVisible" v-slot="{ defer }">
           <div class="item_wrapper" v-for="n in 300" :key="n">
             <heavy-item v-if="defer(n)"></heavy-item>
           </div>
@@ -39,7 +39,7 @@ import { useDefer } from "../composables/useDefer";
 export default defineComponent({
   components: {
     HeavyItem,
-    Defer
+    Defer,
   },
   setup() {
     const firstVisible = ref(true);
@@ -60,8 +60,8 @@ export default defineComponent({
       secondVisible.value = !secondVisible.value;
     }
 
-    function onClickThird(){
-      thirdVisible.value = !thirdVisible.value
+    function onClickThird() {
+      thirdVisible.value = !thirdVisible.value;
     }
 
     return {

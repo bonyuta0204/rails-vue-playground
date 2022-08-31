@@ -1,7 +1,7 @@
 import { Module, ActionContext } from "vuex";
-import Gateway from '../../lib/gateway'
+import Gateway from "../../lib/gateway";
 
-const gateway = new Gateway()
+const gateway = new Gateway();
 
 export interface UsersState {
   users: { id: number; name: string }[];
@@ -19,24 +19,23 @@ const getters = {
   },
 };
 
-
 const mutations = {
-  setUsers(state: UsersState, payload: UsersState['users']){
-    state.users = payload
-  }
+  setUsers(state: UsersState, payload: UsersState["users"]) {
+    state.users = payload;
+  },
 };
 
-const actions= {
-  async loadUsers({commit}: ActionContext<UsersState,any>){
-    const response =  await gateway.get('/ajax/users')
-    commit('setUsers', response.data)
-    return response
-  }
+const actions = {
+  async loadUsers({ commit }: ActionContext<UsersState, any>) {
+    const response = await gateway.get("/ajax/users");
+    commit("setUsers", response.data);
+    return response;
+  },
 };
 
-export type UsersGetters = typeof getters
-export type UsersMutations = typeof mutations
-export type UsersActions = typeof actions
+export type UsersGetters = typeof getters;
+export type UsersMutations = typeof mutations;
+export type UsersActions = typeof actions;
 
 export const users: Module<UsersState, any> = {
   namespaced,

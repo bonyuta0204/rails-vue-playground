@@ -18,8 +18,7 @@ export default defineComponent({
     });
     const messageFilterCondition = ref<MessageFilterCondition>("tip");
 
-    function reloadTips() {
-    }
+    function reloadTips() {}
 
     function onSelectAll() {
       const oldCondition = tipFilterCondition.value;

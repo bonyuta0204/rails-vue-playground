@@ -1,18 +1,17 @@
-import Vue from 'vue';
-import { users } from './modules/users';
-import Vuex, { StoreOptions } from 'vuex';
+import Vue from "vue";
+import { users } from "./modules/users";
+import Vuex, { StoreOptions } from "vuex";
 
 Vue.use(Vuex);
 
 const store: StoreOptions<any> = {
-  strict: process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'staging',
-  state: {
-  },
+  strict:
+    process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "staging",
+  state: {},
   modules: {
-    users
+    users,
   },
-  plugins: [
-  ]
+  plugins: [],
 };
 
 export default new Vuex.Store<any>(store);

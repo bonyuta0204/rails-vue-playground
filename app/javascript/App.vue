@@ -50,7 +50,7 @@ export default defineComponent({
 }
 
 .page_container {
-  height: calc(100% - 40px)
+  height: calc(100% - 40px);
 }
 
 html {
