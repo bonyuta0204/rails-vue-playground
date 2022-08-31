@@ -53,6 +53,7 @@ export default defineComponent({
 }
 
 .message_area_body {
+  overflow: scroll;
   background-color: #fff;
   border-top: 2px solid #ebebeb;
   border-bottom: 2px solid #ebebeb;

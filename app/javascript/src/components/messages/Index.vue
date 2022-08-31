@@ -1,13 +1,13 @@
 <template>
   <div class="message_layout">
-    <div class="channel_side_bar">
+    <div class="channel_side_bar_wrap">
       <channel-side-bar
         :channels="channels"
         @on-select-channel="onSelectChannel"
       >
       </channel-side-bar>
     </div>
-    <div class="message_area">
+    <div class="message_area_wrap">
       <message-area :channel="channel" :messages="messages"> </message-area>
     </div>
   </div>
@@ -15,13 +15,12 @@
 
 <script lang="ts">
 import useSWRV from "swrv";
+import { computed, defineComponent, ref } from "@vue/composition-api";
 import ChannelSideBar from "./ChanneSideBar.vue";
 import MessageArea from "./MessageArea.vue";
 import Gateway from "../../lib/gateway/index";
 import type { Channel } from "../../types/channel";
 import type { Message } from "../../types/message";
-
-import { computed, defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
   name: "MessageIndex",
@@ -68,14 +67,17 @@ export default defineComponent({
   display: grid;
   height: 100%;
   grid-template-columns: 300px 1fr;
+  grid-template-rows: 100%;
 }
 
-.channel_side_bar {
+.channel_side_bar_wrap {
+  height: 100%;
   grid-row: 1;
   grid-column: 1;
 }
 
-.message_area {
+.message_area_wrap {
+  height: 100%;
   grid-row: 1;
   grid-column: 2;
 }
