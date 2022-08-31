@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Api
+module Ajax
   # messages controller
   class MessageListsController < ApplicationController
     def index

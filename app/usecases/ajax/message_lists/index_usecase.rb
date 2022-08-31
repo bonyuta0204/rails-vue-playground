@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Api
+module Ajax
   module MessageLists
     # Messages Index usecase
     class IndexUsecase
