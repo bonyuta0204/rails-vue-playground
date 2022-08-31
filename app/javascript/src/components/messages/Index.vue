@@ -49,7 +49,7 @@ export default defineComponent({
     );
 
     const { data: messages } = useSWRV<Message[]>(
-      () => channelId.value && `/ajax/channels/${channelId.value}/messages`,
+      "/ajax/message_lists",
       gateway.get
     );
 
