@@ -16,7 +16,7 @@ const routes: RouteConfig[] = [
   {
     path: "/messages",
     component: MessageIndex,
-    name: "message"
+    name: "message",
   },
   {
     path: "/chart",

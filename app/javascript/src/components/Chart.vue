@@ -132,11 +132,7 @@ export default defineComponent({
     let editor: monaco.editor.IStandaloneCodeEditor | null = null;
 
     const chartScript = ref(
-      `Highcharts.chart('container', ${JSON.stringify(
-        defaultOption,
-        null,
-        2
-      )})`
+      `Highcharts.chart('container', ${JSON.stringify(defaultOption, null, 2)})`
     );
 
     chartScript.value = prettier.format(chartScript.value, {

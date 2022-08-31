@@ -1,11 +1,10 @@
-import { mount } from '@cypress/vue'
-import UserList from '../../app/javascript/src/components/UserList.vue'
+import { mount } from "@cypress/vue";
+import UserList from "../../app/javascript/src/components/UserList.vue";
 
-it('renders a message', () => {
+it("renders a message", () => {
   mount(UserList, {
-    propsData: {
-    },
-  })
+    propsData: {},
+  });
 
-  cy.get('h1').contains('Hello Cypress!')
-})
+  cy.get("h1").contains("Hello Cypress!");
+});

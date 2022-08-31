@@ -26,9 +26,7 @@ export default {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-   coveragePathIgnorePatterns: [
-     "/node_modules/"
-   ],
+  coveragePathIgnorePatterns: ["/node_modules/"],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",
@@ -71,20 +69,15 @@ export default {
   // ],
 
   // An array of file extensions your modules use
-   moduleFileExtensions: [
-     "js",
-     "jsx",
-     "vue",
-     "ts",
-     "tsx",
-     "json",
-   ],
+  moduleFileExtensions: ["js", "jsx", "vue", "ts", "tsx", "json"],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    'vuex-composition-helpers': '<rootDir>/node_modules/vuex-composition-helpers/dist/index.js',
-    '^i18next$': '<rootDir>/node_modules/i18next/dist/esm/i18next.js',
-    'i18next-sprintf-postprocessor': '<rootDir>/node_modules/i18next-sprintf-postprocessor/dist/es/index.js'
+    "vuex-composition-helpers":
+      "<rootDir>/node_modules/vuex-composition-helpers/dist/index.js",
+    "^i18next$": "<rootDir>/node_modules/i18next/dist/esm/i18next.js",
+    "i18next-sprintf-postprocessor":
+      "<rootDir>/node_modules/i18next-sprintf-postprocessor/dist/es/index.js",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -156,11 +149,7 @@ export default {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-   testPathIgnorePatterns: [
-     "/node_modules/",
-     "/vendor/bundle",
-     "/config"
-   ],
+  testPathIgnorePatterns: ["/node_modules/", "/vendor/bundle", "/config"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -178,16 +167,14 @@ export default {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-   transform: {
-     // babel-jest で js を処理する
-     "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-     "^.+\\.tsx?$": "ts-jest",
-     ".*\\.(vue)$": "@vue/vue2-jest"
-   },
+  transform: {
+    // babel-jest で js を処理する
+    "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.tsx?$": "ts-jest",
+    ".*\\.(vue)$": "@vue/vue2-jest",
+  },
 
-   transformIgnorePatterns: [
-     'node_modules/(?!vuex-composition-helpers)/'
-   ]
+  transformIgnorePatterns: ["node_modules/(?!vuex-composition-helpers)/"],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
