@@ -5,6 +5,7 @@
       <div
         v-for="channel in channels"
         :key="channel.id"
+        class="channel_item"
         @click="onClickChannel(channel.id)"
       >
         {{ channel.name }}
@@ -14,10 +15,7 @@
 </template>
 
 <script lang="ts">
-import useSWRV from "swrv";
-import Gateway from "../lib/gateway";
-
-import { computed, defineComponent, PropType } from "@vue/composition-api";
+import { defineComponent, PropType } from "@vue/composition-api";
 import { Channel } from "src/types/channel";
 
 export default defineComponent({
@@ -45,7 +43,7 @@ export default defineComponent({
 }
 .channel_side_bar_header {
   align-items: center;
-  background-color: #fff;
+  background-color: #e2f7ff;
   border: 2px solid #ebebeb;
   color: #545454;
   display: flex;
@@ -64,5 +62,9 @@ export default defineComponent({
   font-weight: 400;
   height: calc(100% - 40px);
   padding: 0 14px;
+}
+
+.channel_item {
+  cursor: pointer;
 }
 </style>

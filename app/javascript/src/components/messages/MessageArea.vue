@@ -39,7 +39,7 @@ export default defineComponent({
 }
 .message_area_header {
   align-items: center;
-  background-color: #fff;
+  background-color: #e2f7ff;
   border-top: 2px solid #ebebeb;
   border-bottom: 2px solid #ebebeb;
   border-right: 2px solid #ebebeb;
