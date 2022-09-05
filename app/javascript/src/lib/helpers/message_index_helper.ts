@@ -1,4 +1,4 @@
-import {ref, Ref} from '@vue/composition-api'
+import { ref, Ref } from "@vue/composition-api";
 
 export type TipFilterCondition = {
   category: "allTip" | "bookmarked" | "folder";
@@ -35,9 +35,7 @@ export function changeCondition(
   tipIds: Ref<number[]>
 ) {
   if (shouldReloadTips(oldCondition, newCondition)) {
-    console.log(tipIds)
     callback();
-    console.log(tipIds)
-    return tipIds
+    return tipIds;
   }
 }

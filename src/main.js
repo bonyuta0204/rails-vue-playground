@@ -30,8 +30,8 @@ app.whenReady().then(() => {
     "app",
     (request, callback) => {
       const url = request.url.substr(10);
-      console.log('url', url)
-      console.log('path',  path.resolve("./dist", url) )
+      console.log("url", url);
+      console.log("path", path.resolve("./dist", url));
       callback({ path: path.resolve("./dist", url) });
     },
     (error) => {

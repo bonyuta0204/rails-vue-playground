@@ -21,7 +21,9 @@ export function buildFolderItemTree(
   const folderItemTree: FolderItemTree[] = [];
 
   folders.forEach((folder) => {
-    const subFolderItemTree = folder.subFolders.length ?  buildFolderItemTree(folder.subFolders, items): []
+    const subFolderItemTree = folder.subFolders.length
+      ? buildFolderItemTree(folder.subFolders, items)
+      : [];
     const subItems = items.filter((item) => item.folderId === folder.id);
 
     folderItemTree.push({
@@ -32,5 +34,5 @@ export function buildFolderItemTree(
     });
   });
 
-  return folderItemTree
+  return folderItemTree;
 }

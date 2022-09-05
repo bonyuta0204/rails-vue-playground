@@ -8,13 +8,12 @@ import { defineComponent, onMounted } from "@vue/composition-api";
 export default defineComponent({
   setup() {
     onMounted(() => {
-      for(let i = 0;i<10000000;i++){
-        i * i * i
+      for (let i = 0; i < 10000000; i++) {
+        i * i * i;
       }
     });
 
-    return {
-    };
+    return {};
   },
 });
 </script>
