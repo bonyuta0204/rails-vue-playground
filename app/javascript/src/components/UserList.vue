@@ -1,12 +1,16 @@
 <template>
-  <p>{{ userNames }}</p>
+  <div>
+    <p>{{ userNames }}</p>
+    <button @click="onClick">open modal</button>
+  </div>
 </template>
 
 <script lang="ts">
-import useSWRV from "swrv";
-import Gateway from "../lib/gateway";
-
 import { computed, defineComponent } from "@vue/composition-api";
+import useSWRV from "swrv";
+import UserShowModal from "./modals/UserShowModal.vue";
+import { useModalStore } from "../composables/useModalStore";
+import Gateway from "../lib/gateway";
 
 export default defineComponent({
   setup() {
@@ -20,6 +24,23 @@ export default defineComponent({
 
     const gateway = new Gateway();
 
+    const { openModal } = useModalStore();
+
+    const onClick = () => {
+      openModal(UserShowModal, {
+        modalTitle: "test modal title",
+        onHide: () => {
+          console.log("modal hidden");
+        },
+        onCancel: () => {
+          console.log("onCancel");
+        },
+        onOk: () => {
+          console.log("onOk");
+        },
+      });
+    };
+
     const { data: users } = useSWRV<User[]>("/ajax/users", gateway.get);
 
     const userNames = computed<User["name"][]>(() => {
@@ -28,6 +49,7 @@ export default defineComponent({
     });
 
     return {
+      onClick,
       users,
       userNames,
     };
