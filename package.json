@@ -35,6 +35,7 @@
   "devDependencies": {
     "@cypress/vue": "2",
     "@cypress/webpack-dev-server": "^1.8.4",
+    "@types/i18next-sprintf-postprocessor": "^0.2.0",
     "@types/jest": "^28.1.3",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",

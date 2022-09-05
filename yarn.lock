@@ -1600,6 +1600,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/i18next-sprintf-postprocessor@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@types/i18next-sprintf-postprocessor/-/i18next-sprintf-postprocessor-0.2.0.tgz#3bf5faa703a8ee675207fbf2bbd0e0111c582322"
+  integrity sha512-xxmy96QF8dNZf8VbedZqxsJEAvuJKks1OYeEYOu1LI7g4Oyry1sci/5HBhkmvf+u+PV7kbXJmZMBlaqEhLbyRg==
+  dependencies:
+    i18next ">=17.0.11"
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.4"
   resolved "https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz"
@@ -5818,6 +5825,13 @@ i18next-sprintf-postprocessor@^0.2.2:
   version "0.2.2"
   resolved "https://registry.npmjs.org/i18next-sprintf-postprocessor/-/i18next-sprintf-postprocessor-0.2.2.tgz"
   integrity sha1-LkCfEENXk4Jpi2otpwzapVHWfqQ=
+
+i18next@>=17.0.11:
+  version "21.9.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-21.9.1.tgz#9e3428990f5b2cc9ac1b98dd025f3e411c368249"
+  integrity sha512-ITbDrAjbRR73spZAiu6+ex5WNlHRr1mY+acDi2ioTHuUiviJqSz269Le1xHAf0QaQ6GgIHResUhQNcxGwa/PhA==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
 
 i18next@^21.6.16:
   version "21.6.16"
