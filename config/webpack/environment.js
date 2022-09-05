@@ -3,11 +3,22 @@ const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const { environment } = require("@rails/webpacker");
 const { VueLoaderPlugin } = require("vue-loader");
 const { resolve } = require("path");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const vue = require("./loaders/vue");
 
 environment.plugins.prepend("VueLoaderPlugin", new VueLoaderPlugin());
 environment.plugins.prepend("MonacoWebpackPlugin", new MonacoWebpackPlugin());
+environment.plugins.append(
+  "ForkTsCheckerWebpackPlugin",
+  new ForkTsCheckerWebpackPlugin({
+    typescript: {
+      configFile: resolve(__dirname, "../../tsconfig.json"),
+    },
+    async: false,
+  })
+);
 environment.loaders.prepend("vue", vue);
+
 environment.config.merge({
   resolve: {
     alias: {
