@@ -19,6 +19,7 @@ create_table 'messages', force: :cascade do |t|
   t.bigint   'created_by',               null: false
   t.datetime 'created_at', precision: 6, null: false
   t.datetime 'updated_at', precision: 6, null: false
+  add_index 'messages', ["updated_at"],       name: "index_messages_on_updated_at",  using: :btree
   add_index 'messages', ["id", "created_by"], name: "fk_messages_on_users", unique: true, using: :btree
   add_index 'messages', ["id", "channel_id"], name: "fk_messages_on_channels", unique: true, using: :btree
 end
