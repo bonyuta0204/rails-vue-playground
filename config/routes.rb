@@ -6,6 +6,9 @@ Rails.application.routes.draw do
       resources :messages, only: [:index]
     end
     resources :message_lists,  only: [:index]
+    resources :dashboards, only: [:index, :show] do
+      resources :widgets, only: [:show]
+    end
   end
 
   namespace :api do

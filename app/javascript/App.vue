@@ -10,6 +10,9 @@
       <router-link class="header_link" :to="{ name: 'heavy' }"
         >Heavy</router-link
       >
+      <router-link class="header_link" :to="{ name: 'dashboard' }"
+        >Dashboard</router-link
+      >
     </div>
     <div class="page_container">
       <router-view></router-view>
