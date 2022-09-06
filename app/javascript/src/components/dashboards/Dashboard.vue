@@ -1,13 +1,25 @@
 <template>
-  <div class="dashboard_layout"></div>
+  <div class="dashboard_layout">
+    <dashboard-grid :dashboard="dashboard"></dashboard-grid>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, PropType } from "@vue/composition-api";
+import { Dashboard } from "../../types/dashboard";
+import DashboardGrid from "./DashboardGrid.vue";
 
 export default defineComponent({
-  name: "Dashboard",
-  components: {},
+  name: "DashboardDetail",
+  props: {
+    dashboard: {
+      type: Object as PropType<Dashboard>,
+      required: true,
+    },
+  },
+  components: {
+    DashboardGrid,
+  },
   setup() {},
 });
 </script>

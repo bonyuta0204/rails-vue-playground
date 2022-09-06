@@ -6,4 +6,5 @@ class WidgetBlueprint < Blueprinter::Base
   field :y
   field :h
   field :w
+  field :text
 end

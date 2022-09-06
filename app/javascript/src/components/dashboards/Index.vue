@@ -1,6 +1,9 @@
 <template>
   <div class="dashboard_layout">
-    <dashboard-detail :dashboard="dashboard"></dashboard-detail>
+    <dashboard-detail
+      :dashboard="dashboard"
+      v-if="dashboard"
+    ></dashboard-detail>
   </div>
 </template>
 
