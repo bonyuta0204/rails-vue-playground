@@ -24,7 +24,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
 import GlobalModal from "./src/components/modals/GlobalModal.vue";
-import { provideModalStore } from "./src/composables/useModalStore";
+import { provideModalStore } from "@/composables/useModalStore";
 
 export default defineComponent({
   components: {

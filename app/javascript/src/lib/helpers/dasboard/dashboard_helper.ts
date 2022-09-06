@@ -1,4 +1,4 @@
-import { Dashboard, Layout, Widget } from "src/types/dashboard";
+import { Dashboard, Layout, Widget } from "@/types/dashboard";
 
 export function applyDashboardLayout(dashboard: Dashboard, layout: Layout) {
   const clonedDashboard = JSON.parse(JSON.stringify(dashboard)) as Dashboard;

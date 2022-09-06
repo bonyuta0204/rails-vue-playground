@@ -9,8 +9,8 @@
 import { computed, defineComponent } from "@vue/composition-api";
 import useSWRV from "swrv";
 import UserShowModal from "./modals/UserShowModal.vue";
-import { useModalStore } from "../composables/useModalStore";
-import Gateway from "../lib/gateway";
+import { useModalStore } from "@/composables/useModalStore";
+import Gateway from "@/lib/gateway/index";
 
 export default defineComponent({
   setup() {

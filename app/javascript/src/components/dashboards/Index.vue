@@ -10,8 +10,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
 import useSWRV from "swrv";
-import Gateway from "../../lib/gateway";
-import type { Dashboard } from "../../types/dashboard";
+import Gateway from "@/lib/gateway";
+import type { Dashboard } from "@/types/dashboard";
 import DashboardDetail from "./Dashboard.vue";
 
 export default defineComponent({

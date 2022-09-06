@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "@vue/composition-api";
-import { Dashboard } from "../../types/dashboard";
+import { Dashboard } from "@/dashboard";
 import DashboardGrid from "./DashboardGrid.vue";
 
 export default defineComponent({
