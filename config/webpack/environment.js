@@ -23,6 +23,13 @@ environment.config.merge({
   resolve: {
     alias: {
       vue$: resolve(__dirname, "../../node_modules/vue/dist/vue.esm.js"),
+      "@/lib": resolve(__dirname, "../../app/javascript/src/lib"),
+      "@/composables": resolve(
+        __dirname,
+        "../../app/javascript/src/composables"
+      ),
+      "@/components": resolve(__dirname, "../../app/javascript/src/components"),
+      "@/types": resolve(__dirname, "../../app/javascript/src/types"),
     },
   },
 });
