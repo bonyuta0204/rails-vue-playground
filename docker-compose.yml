@@ -14,8 +14,12 @@ services:
     build: .
     volumes:
       - .:/app
-      - bundle:/usr/local/bundle
-    command: ./bin/webpack-dev-server
+      - yarn-cache:/usr/local/share/.cache/yarn/v6
+      - node_modules:/app/node_modules
+    command:
+      - /bin/sh
+      - -c
+      - yarn install && ./bin/webpack-dev-server
     environment:
       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
     ports:
@@ -26,7 +30,8 @@ services:
     tty: true
     volumes:
       - .:/app
-      - bundle:/usr/local/bundle
+      - yarn-cache:/usr/local/share/.cache/yarn/v6
+      - node_modules:/app/node_modules
     command: start.sh
     depends_on:
       - db
@@ -39,3 +44,5 @@ volumes:
     driver: local
   bundle:
     driver: local
+  yarn-cache:
+  node_modules:
