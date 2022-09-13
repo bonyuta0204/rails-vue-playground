@@ -13,7 +13,7 @@ default: &default
   database: rails_vue_playground_development
   username: root
   password: test
-  host: 127.0.0.1
+  host: db
   port: 3306
 
 development:
