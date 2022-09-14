@@ -4,7 +4,7 @@ module MessageLists
   # Messages IndexService
   class IndexService
     def execute
-      Messages::LatestMessageService.new(Message.with_includes).execute
+      Message.latest_messages.with_includes
     end
   end
 end

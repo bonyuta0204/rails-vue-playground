@@ -11,8 +11,8 @@ module Messages
       if latest_message_ids.present?
         message_relation.where(id: latest_message_ids)
       else
-        Rails.cache.write(cache_key, Message.latest_messages.ids)
-        message_relation.latest_messages
+        Rails.cache.write(cache_key, Message._latest_messages.ids)
+        message_relation._latest_messages
       end
     end
 
