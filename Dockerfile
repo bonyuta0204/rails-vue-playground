@@ -1,15 +1,6 @@
 FROM ruby:2.7.2-alpine
 
 # install node.js and yarn
-RUN apk add --no-cache nodejs yarn
-
-RUN mkdir /app
-WORKDIR /app
-
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
-
-
 RUN apk add --no-cache -t .build-dependencies \
     alpine-sdk \
     build-base \
@@ -19,8 +10,15 @@ RUN apk add --no-cache -t .build-dependencies \
     mysql-dev \
     nodejs \
     tzdata \
-    yarn \
- && bundle install \
+    yarn
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+
+RUN bundle install \
  && apk del --purge .build-dependencies
 
 COPY start.sh /usr/bin/
