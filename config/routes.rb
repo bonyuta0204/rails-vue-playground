@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   namespace :ajax do
     resources :users, only: [:index]
 
+    get "auth/sign_in", to: "auth#sign_in"
+
     resources :channels do
       resources :messages, only: [:index]
     end

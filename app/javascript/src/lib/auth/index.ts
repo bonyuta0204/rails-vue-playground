@@ -5,6 +5,8 @@ import {
   getIdToken,
 } from "firebase/auth";
 
+import Gateway from "@/lib/gateway/index";
+
 export async function googleSignIn() {
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
@@ -14,4 +16,9 @@ export async function googleSignIn() {
     user,
     idToken,
   };
+}
+
+export async function signIn(idToken: string) {
+  const gateway = new Gateway();
+  gateway.get("/ajax/auth/sign_in", { token: idToken });
 }

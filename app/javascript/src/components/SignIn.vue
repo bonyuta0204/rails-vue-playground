@@ -6,13 +6,14 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
-import { googleSignIn } from "@/lib/auth/index";
+import { googleSignIn, signIn } from "@/lib/auth/index";
 
 export default defineComponent({
   setup() {
     async function onClickSignIn() {
       const { idToken } = await googleSignIn();
       console.log("idToken", idToken);
+      signIn(idToken);
     }
 
     return {
