@@ -10,7 +10,8 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "*": ["node_modules/*", "app/javascript/*"]
+      "*": ["node_modules/*"],
+      "@/*": ["app/javascript/src/*"]
     },
     "sourceMap": true,
     "target": "es5",

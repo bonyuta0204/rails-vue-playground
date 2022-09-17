@@ -10,6 +10,9 @@
       <router-link class="header_link" :to="{ name: 'heavy' }"
         >Heavy</router-link
       >
+      <router-link class="header_link" :to="{ name: 'dashboard' }"
+        >Dashboard</router-link
+      >
     </div>
     <div class="page_container">
       <router-view></router-view>
@@ -21,7 +24,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
 import GlobalModal from "./src/components/modals/GlobalModal.vue";
-import { provideModalStore } from "./src/composables/useModalStore";
+import { provideModalStore } from "@/composables/useModalStore";
 
 export default defineComponent({
   components: {

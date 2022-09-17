@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "@vue/composition-api";
-import { Channel } from "src/types/channel";
-import { Message } from "../../types/message";
+import { Channel } from "@/types/channel";
+import { Message } from "@/types/message";
 
 export default defineComponent({
   name: "MessageArea",

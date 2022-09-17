@@ -34,7 +34,7 @@
 import { defineComponent, onMounted, ref } from "@vue/composition-api";
 import HeavyItem from "./Heavy/HeavyItem.vue";
 import Defer from "./Defer.vue";
-import { useDefer } from "../composables/useDefer";
+import { useDefer } from "@/composables/useDefer";
 
 export default defineComponent({
   components: {

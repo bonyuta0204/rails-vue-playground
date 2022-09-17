@@ -18,9 +18,9 @@ import useSWRV from "swrv";
 import { computed, defineComponent, ref } from "@vue/composition-api";
 import ChannelSideBar from "./ChanneSideBar.vue";
 import MessageArea from "./MessageArea.vue";
-import Gateway from "../../lib/gateway/index";
-import type { Channel } from "../../types/channel";
-import type { Message } from "../../types/message";
+import Gateway from "@/lib/gateway";
+import type { Channel } from "@/types/channel";
+import type { Message } from "@/types/message";
 
 export default defineComponent({
   name: "MessageIndex",
