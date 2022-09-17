@@ -24,6 +24,8 @@ gem 'blueprinter'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 
+gem 'config'
+
 gem 'rubocop', require: false
 gem 'rubocop-rails',  require: false
 gem 'rubocop-rspec',  require: false
