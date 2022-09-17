@@ -20,5 +20,6 @@ module.exports = {
     // typescriptのプラグイン側でno-unused-varsのチェックを行う
     "no-unused-vars": "off",
     "no-console": ["error", { allow: ["warn", "error"] }],
+    "import/prefer-default-export": "off",
   },
 };
