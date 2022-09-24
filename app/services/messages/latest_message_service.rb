@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Messages
   class LatestMessageService
     # @param message_relation[Message::ActiveRecordRelation]

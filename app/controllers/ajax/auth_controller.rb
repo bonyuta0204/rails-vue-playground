@@ -4,9 +4,11 @@ module Ajax
   # auth controller
   class AuthController < ApplicationController
     def sign_in
-      status, data = Ajax::Auth::SignInUsecase.new(params.to_unsafe_h).call
+      status, token = Ajax::Auth::SignInUsecase.new(params.to_unsafe_h).call
 
-      render json: data, status: status
+      session[:token] = token
+
+      render json: {}, status: status
     end
   end
 end

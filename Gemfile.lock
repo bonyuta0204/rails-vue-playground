@@ -61,6 +61,8 @@ GEM
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     ast (2.4.2)
+    backport (1.2.0)
+    benchmark (0.2.0)
     bindex (0.8.1)
     blueprinter (0.25.3)
     bootsnap (1.11.1)
@@ -74,6 +76,7 @@ GEM
       dry-validation (~> 1.0, >= 1.0.0)
     crass (1.0.6)
     deep_merge (1.2.2)
+    diff-lcs (1.5.0)
     diffy (3.4.0)
     dry-configurable (0.15.0)
       concurrent-ruby (~> 1.0)
@@ -106,6 +109,7 @@ GEM
       dry-core (~> 0.5, >= 0.5)
       dry-initializer (~> 3.0)
       dry-schema (~> 1.8, >= 1.8.0)
+    e2mmap (0.1.0)
     erubi (1.10.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -119,7 +123,13 @@ GEM
       activesupport (>= 5.0)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    jaro_winkler (1.5.4)
     json (2.6.2)
+    jwt (2.5.0)
+    kramdown (2.4.0)
+      rexml
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -189,6 +199,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.5.0)
+    reverse_markdown (2.1.1)
+      nokogiri
     rexml (3.2.5)
     ridgepole (1.0.4)
       activerecord (>= 5.1, < 7.1)
@@ -221,6 +233,21 @@ GEM
       sentry-ruby-core (= 5.2.1)
     sentry-ruby-core (5.2.1)
       concurrent-ruby
+    solargraph (0.46.0)
+      backport (~> 1.2)
+      benchmark
+      bundler (>= 1.17.2)
+      diff-lcs (~> 1.4)
+      e2mmap
+      jaro_winkler (~> 1.5)
+      kramdown (~> 2.3)
+      kramdown-parser-gfm (~> 1.1)
+      parser (~> 3.0)
+      reverse_markdown (>= 1.0.5, < 3)
+      rubocop (>= 0.52)
+      thor (~> 1.0)
+      tilt (~> 2.0)
+      yard (~> 0.9, >= 0.9.24)
     spring (4.0.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -230,6 +257,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     thor (1.2.1)
+    tilt (2.0.11)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.2.0)
@@ -243,9 +271,12 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    webrick (1.7.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    yard (0.9.28)
+      webrick (~> 1.7.0)
     zeitwerk (2.5.4)
 
 PLATFORMS
@@ -259,6 +290,7 @@ DEPENDENCIES
   factory_bot
   factory_bot_rails
   faker
+  jwt
   listen (~> 3.3)
   mysql2
   pry
@@ -272,6 +304,7 @@ DEPENDENCIES
   rubocop-rspec
   sentry-rails
   sentry-ruby
+  solargraph
   spring
   tzinfo-data
   web-console (>= 4.1.0)

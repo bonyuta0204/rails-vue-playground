@@ -25,6 +25,7 @@ gem 'sentry-rails'
 gem 'sentry-ruby'
 
 gem 'config'
+gem 'jwt'
 
 gem 'rubocop', require: false
 gem 'rubocop-rails',  require: false
@@ -33,11 +34,11 @@ gem 'rubocop-rspec',  require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'pry'
-  gem 'pry-rails'
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -48,6 +49,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'solargraph'
   gem 'spring'
 end
 

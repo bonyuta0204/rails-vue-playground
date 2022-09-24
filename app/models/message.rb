@@ -24,7 +24,6 @@ class Message < ApplicationRecord
   }
 
   def self.latest_messages
-    relation = Messages::LatestMessageService.new(all).execute
-    relation
+    Messages::LatestMessageService.new(all).execute
   end
 end

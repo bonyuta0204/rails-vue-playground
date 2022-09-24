@@ -4,8 +4,6 @@ module Ajax
   module Channels
     # Channels Index usecase
     class IndexUsecase
-      def initialize; end
-
       def call
         messages = ::Channels::IndexService.new.execute
         [:ok, ChannelBlueprint.render_as_json(messages)]
