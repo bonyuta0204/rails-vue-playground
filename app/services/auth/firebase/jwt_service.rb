@@ -4,6 +4,8 @@ module Auth
   module Firebase
     # JWT Service
     class JwtService
+      include RailsVuePlaygroundException
+
       ALG = 'RS256'
       CERTS_URI = 'https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com'
       CERTS_CACHE_KEY = 'firebase_auth_certificates'
@@ -34,15 +36,15 @@ module Auth
         end
 
         # JWT.decode でチェックされない項目のチェック
-        raise InvalidTokenError, 'Invalid auth_time' unless Time.zone.at(payload['auth_time']).past?
-        raise InvalidTokenError, 'Invalid sub' if payload['sub'].empty?
+        unless Time.zone.at(payload['auth_time']).past?
+          raise RailsVuePlaygroundException::UnauthorizedError,
+                'Invalid auth_time'
+        end
+        raise RailsVuePlaygroundException::UnauthorizedError, 'Invalid sub' if payload['sub'].empty?
 
         payload.deep_symbolize_keys
       rescue JWT::DecodeError => e
-        Rails.logger.error e.message
-        Rails.logger.error e.backtrace.join("\n")
-
-        raise InvalidTokenError, e.message
+        raise RailsVuePlaygroundException::UnauthorizedError, e.message
       end
 
       private

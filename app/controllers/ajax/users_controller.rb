@@ -2,7 +2,7 @@
 
 module Ajax
   # users controller
-  class UsersController < ApplicationController
+  class UsersController < AuthorizedApiController
     def index
       useres = User.all
       render json: useres
