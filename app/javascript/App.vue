@@ -25,6 +25,7 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import GlobalModal from "./src/components/modals/GlobalModal.vue";
 import { provideModalStore } from "@/composables/useModalStore";
+import googleSinInImage from "@/assets/google_signin.png";
 
 export default defineComponent({
   components: {
