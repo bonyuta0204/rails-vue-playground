@@ -14,13 +14,13 @@ import Gateway from "@/lib/gateway/index";
 
 export default defineComponent({
   setup() {
-    type User = {
+    interface User {
       id: string;
       name: string;
       avatar_url: string;
       created_at: string;
       updated_at: string;
-    };
+    }
 
     const gateway = new Gateway();
 
@@ -30,12 +30,15 @@ export default defineComponent({
       openModal(UserShowModal, {
         modalTitle: "test modal title",
         onHide: () => {
+          // eslint-disable-next-line no-console
           console.log("modal hidden");
         },
         onCancel: () => {
+          // eslint-disable-next-line no-console
           console.log("onCancel");
         },
         onOk: () => {
+          // eslint-disable-next-line no-console
           console.log("onOk");
         },
       });

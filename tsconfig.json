@@ -17,6 +17,6 @@
     "target": "es5",
     "noEmit": true
   },
-  "exclude": ["**/*.spec.ts", "node_modules", "vendor", "public", "cypress"],
+  "exclude": ["node_modules", "vendor", "public", "cypress"],
   "compileOnSave": false
 }

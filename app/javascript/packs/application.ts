@@ -1,6 +1,5 @@
 import Vue from "vue";
 import { BootstrapVue } from "bootstrap-vue";
-import { logger } from "@sentry/utils";
 
 import * as Sentry from "@sentry/vue";
 
@@ -53,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   Vue.prototype.$firebase = firebase;
 
-  // logger.enable()
   new Vue({
     components: { App },
     template: "<App/>",

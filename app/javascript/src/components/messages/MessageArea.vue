@@ -22,9 +22,11 @@ export default defineComponent({
   props: {
     channel: {
       type: Object as PropType<Channel | undefined>,
+      required: true,
     },
     messages: {
       type: Array as PropType<Message[]>,
+      required: true,
     },
   },
   setup() {

@@ -11,7 +11,7 @@ import {
 
 import { ref } from "@vue/composition-api";
 
-let tipIds = ref([]);
+const tipIds = ref<number[]>([]);
 const loadTips = jest.fn(() => (tipIds.value = [1, 2, 3]));
 
 describe("on folder side bar changed", () => {
@@ -55,7 +55,7 @@ describe("on folder side bar changed", () => {
           tipIds
         );
         expect(loadTips.mock.calls.length).toEqual(1);
-        expect(result.value).toEqual([1, 2, 3]);
+        expect(result?.value).toEqual([1, 2, 3]);
       });
     });
 
@@ -68,7 +68,7 @@ describe("on folder side bar changed", () => {
           tipIds
         );
         expect(loadTips.mock.calls.length).toEqual(1);
-        expect(result.value).toEqual([1, 2, 3]);
+        expect(result?.value).toEqual([1, 2, 3]);
       });
     });
   });

@@ -6,7 +6,9 @@ export function applyDashboardLayout(dashboard: Dashboard, layout: Layout) {
   const modifedWidgets: Widget[] = layout.map((widgetLayout) => {
     const targetWidget = dashboard.widgets.find(
       (widget) => String(widget.id) === widgetLayout.i
-    ) as Widget;
+    );
+
+    if (!targetWidget) throw "widget not found";
 
     return {
       ...targetWidget,

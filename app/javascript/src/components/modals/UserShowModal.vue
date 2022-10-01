@@ -1,5 +1,11 @@
 <template>
-  <b-modal id="user-show-modal" v-model="value" @hide="onHide" @ok="onOk" @cancel="onCancel">
+  <b-modal
+    id="user-show-modal"
+    v-model="value"
+    @hide="onHide"
+    @ok="onOk"
+    @cancel="onCancel"
+  >
     <div>{{ modalTitle }}</div>
   </b-modal>
 </template>
@@ -18,12 +24,15 @@ export default defineComponent({
     },
     onHide: {
       type: Function as PropType<() => void>,
+      required: true,
     },
     onOk: {
       type: Function as PropType<() => void>,
+      required: true,
     },
     onCancel: {
       type: Function as PropType<() => void>,
+      required: true,
     },
   },
   setup(_, { attrs }) {

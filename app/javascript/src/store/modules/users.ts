@@ -26,8 +26,10 @@ const mutations = {
 };
 
 const actions = {
-  async loadUsers({ commit }: ActionContext<UsersState, any>) {
-    const response = await gateway.get("/ajax/users");
+  async loadUsers({ commit }: ActionContext<UsersState, object>) {
+    const response = await gateway.get<{ data: UsersState["users"] }>(
+      "/ajax/users"
+    );
     commit("setUsers", response.data);
     return response;
   },
@@ -37,7 +39,7 @@ export type UsersGetters = typeof getters;
 export type UsersMutations = typeof mutations;
 export type UsersActions = typeof actions;
 
-export const users: Module<UsersState, any> = {
+export const users: Module<UsersState, object> = {
   namespaced,
   state,
   getters,

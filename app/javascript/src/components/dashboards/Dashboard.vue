@@ -11,16 +11,15 @@ import DashboardGrid from "./DashboardGrid.vue";
 
 export default defineComponent({
   name: "DashboardDetail",
+  components: {
+    DashboardGrid,
+  },
   props: {
     dashboard: {
       type: Object as PropType<Dashboard>,
       required: true,
     },
   },
-  components: {
-    DashboardGrid,
-  },
-  setup() {},
 });
 </script>
 

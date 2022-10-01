@@ -4,7 +4,7 @@ import Vuex, { StoreOptions } from "vuex";
 
 Vue.use(Vuex);
 
-const store: StoreOptions<any> = {
+const store: StoreOptions<object> = {
   strict:
     process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "staging",
   state: {},
@@ -14,4 +14,4 @@ const store: StoreOptions<any> = {
   plugins: [],
 };
 
-export default new Vuex.Store<any>(store);
+export default new Vuex.Store<object>(store);
