@@ -3,18 +3,18 @@
     <grid-layout
       v-if="gridLayout"
       :layout.sync="gridLayout"
-      @layout-updated="onLayoutUpdated"
       is-draggable
       is-resizable
+      @layout-updated="onLayoutUpdated"
     >
       <grid-item
         v-for="(item, i) in gridLayout"
+        :key="item.id"
         :x="item.x"
         :y="item.y"
         :w="item.w"
         :h="1"
         :i="String(item.i)"
-        :key="item.id"
         is-draggable
         is-resizable
       >
@@ -41,16 +41,16 @@ import { applyDashboardLayout } from "../../lib/helpers/dasboard/dashboard_helpe
  */
 export default defineComponent({
   name: "DashboardGrid",
+  components: {
+    GridLayout,
+    GridItem,
+    WidgetCard,
+  },
   props: {
     dashboard: {
       type: Object as PropType<Dashboard>,
       required: true,
     },
-  },
-  components: {
-    GridLayout,
-    GridItem,
-    WidgetCard,
   },
   setup(props, { emit }) {
     const gridLayout = ref<Layout>();

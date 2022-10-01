@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :development do
   namespace :fake_data do
     desc 'メッセージをランダムに作成します'

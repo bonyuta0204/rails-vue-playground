@@ -1,21 +1,21 @@
 import Vue from "vue";
-import App from "../App.vue";
-import store from "../src/store";
-import router from "../src/router";
 import { BootstrapVue } from "bootstrap-vue";
-import { logger } from "@sentry/utils";
 
 import * as Sentry from "@sentry/vue";
 
 import { BrowserTracing } from "@sentry/tracing";
 
 import VueCompositionAPI from "@vue/composition-api";
-
-Vue.use(VueCompositionAPI);
+import { initializeApp } from "firebase/app";
+import router from "../src/router";
+import store from "../src/store";
+import App from "../App.vue";
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+
+Vue.use(VueCompositionAPI);
 
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
@@ -38,7 +38,20 @@ Sentry.init({
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // logger.enable()
+  const config = document.querySelector<HTMLDivElement>(
+    "script[name=config]"
+  )?.dataset;
+
+  if (!config) throw new Error("Failed to Load Config");
+
+  const firebaseConfig = config.firebase && JSON.parse(config.firebase);
+
+  if (!firebaseConfig) throw new Error("Failed to Load Firebase Config");
+
+  const firebase = initializeApp(firebaseConfig);
+
+  Vue.prototype.$firebase = firebase;
+
   new Vue({
     components: { App },
     template: "<App/>",

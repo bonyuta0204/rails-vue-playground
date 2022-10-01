@@ -30,6 +30,7 @@ environment.config.merge({
       ),
       "@/components": resolve(__dirname, "../../app/javascript/src/components"),
       "@/types": resolve(__dirname, "../../app/javascript/src/types"),
+      "@/assets": resolve(__dirname, "../../app/javascript/src/assets"),
     },
   },
 });

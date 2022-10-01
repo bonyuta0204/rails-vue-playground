@@ -3,8 +3,6 @@
 module Channels
   # Channels IndexService
   class IndexService
-    def initialize; end
-
     def execute
       Channel.all
     end

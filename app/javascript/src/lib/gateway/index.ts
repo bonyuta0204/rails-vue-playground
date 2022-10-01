@@ -3,9 +3,7 @@ import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3000";
 
 export default class {
-  constructor() {}
-
-  async get<T = any>(url: string, params = {}) {
+  async get<T = unknown>(url: string, params = {}) {
     return axios.get<T>(url, { params }).then((response) => response.data);
   }
 

@@ -5,7 +5,6 @@
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
 import {
-  shouldReloadTips,
   MessageFilterCondition,
   TipFilterCondition,
 } from "../lib/helpers/message_index_helper";
@@ -18,18 +17,11 @@ export default defineComponent({
     });
     const messageFilterCondition = ref<MessageFilterCondition>("tip");
 
-    function reloadTips() {}
-
     function onSelectAll() {
-      const oldCondition = tipFilterCondition.value;
       tipFilterCondition.value = {
         category: "allTip",
         folder_id: undefined,
       };
-
-      if (shouldReloadTips(oldCondition, tipFilterCondition.value)) {
-        reloadTips();
-      }
     }
 
     function onSelectBookmark() {
@@ -52,7 +44,7 @@ export default defineComponent({
       };
     }
 
-    function onSelectFolderAndTip(folderId: number, tipId: number) {
+    function onSelectFolderAndTip(folderId: number) {
       tipFilterCondition.value = {
         category: "folder",
         folder_id: folderId,

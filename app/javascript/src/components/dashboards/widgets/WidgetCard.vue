@@ -8,21 +8,20 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "@vue/composition-api";
-import { Widget } from "src/types/dashboard";
+import { Widget } from "@/types/dashboard";
 
 /**
  * WidgetCard Vue
  */
 export default defineComponent({
   name: "WidgetCard",
+  components: {},
   props: {
     widget: {
       type: Object as PropType<Widget>,
       required: true,
     },
   },
-  components: {},
-  setup() {},
 });
 </script>
 

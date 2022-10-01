@@ -3,25 +3,24 @@
     <div class="container_wrap">
       <div class="container">
         <button @click="onClickFirst">toggle</button>
-        <div class="item_wrapper" v-if="firstVisible" v-for="n in 300" :key="n">
-          <heavy-item v-if="firstDefer(n)"></heavy-item>
-        </div>
+        <template v-for="n in 300">
+          <div v-if="firstVisible" :key="n" class="item_wrapper">
+            <heavy-item v-if="firstDefer(n)"></heavy-item>
+          </div>
+        </template>
       </div>
       <div class="container">
         <button @click="onClickSecond">toggle</button>
-        <div
-          class="item_wrapper"
-          v-if="secondVisible"
-          v-for="n in 300"
-          :key="n"
-        >
-          <heavy-item v-if="secondDefer(n)"></heavy-item>
-        </div>
+        <template v-if="secondVisible">
+          <div v-for="n in 300" :key="n" class="item_wrapper">
+            <heavy-item v-if="secondDefer(n)"></heavy-item>
+          </div>
+        </template>
       </div>
       <div class="container">
         <button @click="onClickThird">toggle</button>
         <defer v-if="thirdVisible" v-slot="{ defer }">
-          <div class="item_wrapper" v-for="n in 300" :key="n">
+          <div v-for="n in 300" :key="n" class="item_wrapper">
             <heavy-item v-if="defer(n)"></heavy-item>
           </div>
         </defer>
@@ -31,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "@vue/composition-api";
+import { defineComponent, ref } from "@vue/composition-api";
 import HeavyItem from "./Heavy/HeavyItem.vue";
 import Defer from "./Defer.vue";
 import { useDefer } from "@/composables/useDefer";

@@ -1,16 +1,16 @@
-export type Widget = {
+export interface Widget {
   id: number;
   x: number;
   y: number;
   h: number;
   w: number;
-};
+}
 
-export type Dashboard = {
+export interface Dashboard {
   id: number;
   name: string;
   widgets: Widget[];
-};
+}
 export type Layout = {
   x: number;
   y: number;

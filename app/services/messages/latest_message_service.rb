@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Messages
+  # LatestMessageService
   class LatestMessageService
     # @param message_relation[Message::ActiveRecordRelation]
     def initialize(message_relation)

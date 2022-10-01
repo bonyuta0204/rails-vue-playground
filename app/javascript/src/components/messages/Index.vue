@@ -35,8 +35,11 @@ export default defineComponent({
 
     const channelId = computed<Channel["id"] | undefined>(() => {
       if (selectedChannelId.value) return selectedChannelId.value;
-      if (channels.value && channels.value.length > 0)
+      if (channels.value && channels.value.length > 0) {
         return channels.value[0].id;
+      } else {
+        return undefined;
+      }
     });
 
     const channel = computed(() =>
