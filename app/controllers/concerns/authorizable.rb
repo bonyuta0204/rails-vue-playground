@@ -7,8 +7,6 @@ module Authorizable
   end
 
   def require_access_token!
-    puts 'require_access_token'
-    puts access_token
     Auth::Firebase::JwtService.new(access_token).validate!
   end
 end

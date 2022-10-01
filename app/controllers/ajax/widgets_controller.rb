@@ -2,7 +2,7 @@
 
 module Ajax
   # Widgets controller
-  class WidgetsController < ApplicationController
+  class WidgetsController < AuthorizedApiController
     def show
       status, data = Ajax::Widgets::ShowUsecase.new(params.to_unsafe_h).call
 
