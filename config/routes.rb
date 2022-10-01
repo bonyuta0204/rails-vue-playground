@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
     get "auth/sign_in", to: "auth#sign_in"
 
+    resource :operator,  only: [:show]
+
     resources :channels do
       resources :messages, only: [:index]
     end
