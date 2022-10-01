@@ -1,0 +1,78 @@
+name: Test
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: bitnami/mysql:8.0.20
+        ports:
+          - 3306:3306
+        env:
+          ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_USER: root_user
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: ruby_test
+          MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
+        options: --health-cmd "mysqladmin ping" --health-interval 20s --health-timeout 10s --health-retries 10
+      redis:
+        image: redis:5-alpine
+        ports:
+          - 6379:6379
+        options: --health-cmd "redis-cli -h localhost ping" --health-interval 10s --health-timeout 5s --health-retries 15
+    container:
+      image: "bonyuta0204/ruby2.7-node14.18-alpine"
+      env:
+        RAILS_ENV: test
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Cache bundle gems
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+            ${{ runner.os }}-
+
+      - name: Bundle install
+        run: bundle install  --jobs 4 --retry 3
+
+      - name: Yarn install
+        run: yarn install
+
+      - name: DB setup
+        run: |
+          mv config/database.ci.yml config/database.yml
+          bundle exec rails db:create
+
+      - name: Run rubocop
+        run: bundle exec rubocop
+
+      - name: Run eslint
+        run: yarn run eslint
+
+      - name: Run prettier check
+        run: node_modules/.bin/prettier --check .
+
+      - name: Run webpack build check
+        run: ./bin/webpack
+
+      - name: Run rspec
+        run: RAILS_ENV=test bundle exec rspec

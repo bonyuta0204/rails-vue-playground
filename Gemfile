@@ -26,6 +26,9 @@ gem 'sentry-ruby'
 
 gem 'config'
 gem 'jwt'
+gem 'rake'
+gem 'rspec'
+gem 'rspec-rails'
 
 gem 'rubocop', require: false
 gem 'rubocop-rails',  require: false
