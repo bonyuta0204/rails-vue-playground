@@ -14,7 +14,6 @@ module Ajax
         # create new if user when not exists
         user = User.find_or_initialize_by(identifier: identifier)
 
-
         if user.new_record?
           user.name = decoded_jwt[:name]
           user.avatar_url = decoded_jwt[:picture]

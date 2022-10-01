@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Authorizable
 module Authorizable
   extend ActiveSupport::Concern
