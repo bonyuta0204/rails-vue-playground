@@ -20,5 +20,5 @@ export async function googleSignIn() {
 
 export async function signIn(idToken: string) {
   const gateway = new Gateway();
-  gateway.get("/ajax/auth/sign_in", { token: idToken });
+  return gateway.get("/ajax/auth/sign_in", { token: idToken });
 }

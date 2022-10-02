@@ -22,9 +22,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { defineComponent, ref, watch } from "@vue/composition-api";
 import GlobalModal from "./src/components/modals/GlobalModal.vue";
+import * as Sentry from "@sentry/vue";
 import { provideModalStore } from "@/composables/useModalStore";
+import { useOperator } from "@/composables/useOperator";
 
 export default defineComponent({
   components: {
@@ -34,6 +36,16 @@ export default defineComponent({
     provideModalStore();
     const message = ref("message");
     const users = ref([]);
+
+    const { operator } = useOperator();
+
+    watch(operator, (newOperator) => {
+      if (newOperator) {
+        Sentry.setUser({ id: newOperator.id, username: newOperator.name });
+      } else {
+        Sentry.setUser(null);
+      }
+    });
 
     return {
       message,
