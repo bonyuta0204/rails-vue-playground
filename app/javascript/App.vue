@@ -13,6 +13,9 @@
       <router-link class="header_link" :to="{ name: 'dashboard' }"
         >Dashboard</router-link
       >
+      <router-link class="header_link" :to="{ name: 'table' }"
+        >Table</router-link
+      >
     </div>
     <div class="page_container">
       <router-view></router-view>

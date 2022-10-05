@@ -7,6 +7,7 @@ import Chart from "../components/Chart.vue";
 import Heavy from "../components/Heavy.vue";
 import Dashboard from "../components/dashboards/Index.vue";
 import MessageIndex from "../components/messages/Index.vue";
+import Table from "../components/Table.vue";
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,12 @@ const routes: RouteConfig[] = [
   {
     path: "/users",
     component: UserList,
+    name: "users",
+  },
+  {
+    path: "/table",
+    component: Table,
+    name: "table",
   },
   {
     path: "/sign_in",
