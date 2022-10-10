@@ -1,23 +1,30 @@
 <template>
-  <tr class="table_row">
-    <td v-for="n in depth" class="table_cell empty_cell"></td>
-    <td class="table_cell table_title_cell">
-      <div class="table_title">
-        {{ row.title }}
-      </div>
-      <template v-if="showOpenToggle">
-        <div v-if="row.isOpen" class="toggle_icon" @click="onClickClose">
-          🔻
-        </div>
-        <div v-else class="toggle_icon" @click="onClickOpen">></div>
-      </template>
+  <tr class="table_row" :class="{ row_collapse: collapsed }">
+    <td v-for="n in depth" class="table_cell empty_cell">
+      <div class="table_cell_inner"></div>
     </td>
-    <td
-      v-for="n in titleColumnWidth - depth - 1"
-      class="table_cell empty_cell"
-    ></td>
+    <td class="table_cell table_title_cell">
+      <div class="table_cell_inner">
+        <div class="table_title">
+          {{ row.title }}
+        </div>
+        <template v-if="showOpenToggle">
+          <div v-if="row.isOpen" class="toggle_icon" @click="onClickClose">
+            🔻
+          </div>
+          <div v-else class="toggle_icon" @click="onClickOpen">></div>
+        </template>
+      </div>
+    </td>
+    <td v-for="n in titleColumnWidth - depth - 1" class="table_cell empty_cell">
+      <div class="table_cell_inner"></div>
+    </td>
     <template v-for="cell in row.cells">
-      <td class="table_cell">{{ cell.value }}</td>
+      <td class="table_cell">
+        <div class="table_cell_inner">
+          {{ cell.value }}
+        </div>
+      </td>
     </template>
   </tr>
 </template>
@@ -35,6 +42,10 @@ export default defineComponent({
     },
     titleColumnWidth: {
       type: Number,
+      required: true,
+    },
+    collapsed: {
+      type: Boolean,
       required: true,
     },
     depth: {
@@ -82,7 +93,27 @@ p {
   flex: 1;
 }
 
+.table_cell {
+  opacity: 1;
+}
+
+.table_cell_inner {
+  display: flex;
+  max-height: 50px;
+  transition: max-height 0.5s ease;
+}
+
+.row_collapse .table_cell_inner {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
 .toggle_icon {
   cursor: pointer;
+}
+
+tr {
+  transition: 0.5s;
 }
 </style>

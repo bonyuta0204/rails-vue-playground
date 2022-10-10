@@ -10,6 +10,7 @@
       <table-row-wrap
         :row="row"
         :title-column-width="titleColumnWidth"
+        :collapsed="false"
         @open-row="onOpenRow"
         @close-row="onCloseRow"
       ></table-row-wrap>

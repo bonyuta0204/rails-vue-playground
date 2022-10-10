@@ -13,6 +13,10 @@ export default Vue.component("TableRowWrap", {
       type: Number,
       required: true,
     },
+    collapsed: {
+      type: Boolean,
+      required: true,
+    },
     depth: {
       type: Number,
       required: false,
@@ -23,6 +27,7 @@ export default Vue.component("TableRowWrap", {
     const rowNode = h(TableRow, {
       props: {
         row: props.row,
+        collapsed: props.collapsed,
         titleColumnWidth: props.titleColumnWidth,
         depth: props.depth,
       },
@@ -33,6 +38,7 @@ export default Vue.component("TableRowWrap", {
       h("TableRowWrap", {
         props: {
           row: row,
+          collapsed: !props.row.isOpen || props.collapsed,
           titleColumnWidth: props.titleColumnWidth,
           depth: props.depth + 1,
         },
@@ -40,6 +46,6 @@ export default Vue.component("TableRowWrap", {
       })
     );
 
-    return props.row.isOpen && subRows ? [rowNode, ...subRows] : [rowNode];
+    return subRows ? [rowNode, ...subRows] : [rowNode];
   },
 });
