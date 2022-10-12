@@ -1,6 +1,6 @@
 <template>
   <tr class="table_row">
-    <th v-for="n in titleColumnWidth" class="table_header"></th>
+    <th class="table_header"></th>
     <template v-for="item in header">
       <th class="table_header" :colspan="item.width">
         {{ item.label }}

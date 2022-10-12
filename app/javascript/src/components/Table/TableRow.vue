@@ -1,23 +1,17 @@
 <template>
   <tr class="table_row" :class="{ row_collapse: collapsed }">
-    <td v-for="n in depth" class="table_cell empty_cell">
-      <div class="table_cell_inner"></div>
-    </td>
-    <td class="table_cell table_title_cell">
-      <div class="table_cell_inner">
-        <div class="table_title">
-          {{ row.title }}
-        </div>
+    <td class="table_title_cell">
+      <div class="table_cell_inner row_header" :style="rowHeaderCellStyle">
         <template v-if="showOpenToggle">
           <div v-if="row.isOpen" class="toggle_icon" @click="onClickClose">
             🔻
           </div>
           <div v-else class="toggle_icon" @click="onClickOpen">></div>
         </template>
+        <div class="table_title">
+          {{ row.title }}
+        </div>
       </div>
-    </td>
-    <td v-for="n in titleColumnWidth - depth - 1" class="table_cell empty_cell">
-      <div class="table_cell_inner"></div>
     </td>
     <template v-for="cell in row.cells">
       <td class="table_cell">
@@ -66,7 +60,15 @@ export default defineComponent({
     function onClickClose() {
       emit("close-row", props.row.id);
     }
+
+    const rowHeaderCellStyle = computed<Record<string, string>>(() => {
+      return {
+        "padding-left": `${10 + props.depth * 20}px`,
+      };
+    });
+
     return {
+      rowHeaderCellStyle,
       onClickOpen,
       onClickClose,
       showOpenToggle,
@@ -81,20 +83,12 @@ p {
   text-align: center;
 }
 
-.empty_cell {
-  min-width: 50px;
-}
-
 .table_title_cell {
   display: flex;
 }
 
 .table_title {
   flex: 1;
-}
-
-.table_cell {
-  opacity: 1;
 }
 
 .table_cell_inner {
@@ -109,11 +103,11 @@ p {
   transition: max-height 0.5s ease;
 }
 
-.toggle_icon {
-  cursor: pointer;
+.row_header {
+  margin-left: 20px;
 }
 
-tr {
-  transition: 0.5s;
+.toggle_icon {
+  cursor: pointer;
 }
 </style>

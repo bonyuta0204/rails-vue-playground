@@ -24,3 +24,29 @@ export type DisplayRow = Row & {
 };
 
 export type RowOpenState = Record<Row["id"], DisplayRow["isOpen"]>;
+
+export type SectionOpenState = Record<
+  TableSection["id"],
+  DisplayTableSection["isOpen"]
+>;
+
+export type TableSection = {
+  id: number;
+  title: string;
+  subSections: {
+    id: number;
+    title: string;
+    subRows: Row[];
+  }[];
+  subRows?: Row[];
+};
+
+export type DisplayTableSection = TableSection & {
+  isOpen: boolean;
+  subSections: {
+    id: number;
+    title: string;
+    subRows: DisplayRow[];
+  }[];
+  subRows?: DisplayRow[];
+};

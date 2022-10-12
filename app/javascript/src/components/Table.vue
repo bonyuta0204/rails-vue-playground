@@ -6,26 +6,61 @@
         :title-column-width="titleColumnWidth"
       ></table-header>
     </template>
-    <template v-for="row in displayRows">
-      <table-row-wrap
-        :row="row"
-        :title-column-width="titleColumnWidth"
-        :collapsed="false"
-        @open-row="onOpenRow"
-        @close-row="onCloseRow"
-      ></table-row-wrap>
+    <template v-for="section in displaySections">
+      <tr class="section_row">
+        <td>
+          <div class="section_header">
+            {{ section.title }}
+          </div>
+        </td>
+      </tr>
+      <template v-for="row in section.subRows">
+        <table-row-wrap
+          :row="row"
+          :title-column-width="titleColumnWidth"
+          :collapsed="false"
+          @open-row="onOpenRow"
+          @close-row="onCloseRow"
+        ></table-row-wrap>
+      </template>
+      <template v-for="subSection in section.subSections">
+        <tr class="sub_section_row">
+          <td>
+            <div class="sub_section_header">
+              {{ subSection.title }}
+            </div>
+          </td>
+        </tr>
+        <template v-for="row in subSection.subRows">
+          <table-row-wrap
+            :row="row"
+            :title-column-width="titleColumnWidth"
+            :collapsed="false"
+            @open-row="onOpenRow"
+            @close-row="onCloseRow"
+          ></table-row-wrap>
+        </template>
+      </template>
     </template>
   </table>
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import { computed, defineComponent, ref } from "@vue/composition-api";
 import TableHeader from "./Table/TableHeader.vue";
 import TableRowWrap from "./Table/TableRowWrap";
-import type { DisplayRow, Header, Row, RowOpenState } from "@/types/table";
-import { mergeRowOpenState } from "@/lib/table";
+import type {
+  DisplayTableSection,
+  SectionOpenState,
+  Header,
+  Row,
+  RowOpenState,
+  TableSection,
+} from "@/types/table";
+import { mergeOpenState } from "@/lib/table";
 
-const titleColumnWidth = 3;
+const titleColumnWidth = 5;
 
 const headers: Header[] = [
   [
@@ -82,104 +117,156 @@ const headers: Header[] = [
   ],
 ];
 
-const rows: Row[] = [
+const sections: TableSection[] = [
   {
     id: 1,
-    title: "売上(全体)",
-    cells: [
-      {
-        value: 100,
-      },
-      {
-        value: 200,
-      },
-      {
-        value: 300,
-      },
-      {
-        value: 400,
-      },
-      {
-        value: 500,
-      },
-      {
-        value: 600,
-      },
-    ],
-    subRows: [
+    title: "全社KGI",
+    subSections: [
       {
         id: 2,
-        title: "売上(開発)",
-        cells: [
-          {
-            value: 100,
-          },
-          {
-            value: 200,
-          },
-          {
-            value: 300,
-          },
-          {
-            value: 400,
-          },
-          {
-            value: 500,
-          },
-          {
-            value: 600,
-          },
-        ],
+        title: "売上高",
         subRows: [
           {
-            id: 7,
-            title: "売上(b→dash開発)",
-            cells: [
+            id: 100,
+            title: "全社KGI",
+            cells: [{ value: 100 }],
+            subRows: [
               {
-                value: 100,
-              },
-              {
-                value: 200,
-              },
-              {
-                value: 300,
-              },
-              {
-                value: 400,
-              },
-              {
-                value: 500,
-              },
-              {
-                value: 600,
+                id: 1,
+                title: "売上高(四半期)",
+                cells: [
+                  {
+                    value: 100,
+                  },
+                  {
+                    value: 200,
+                  },
+                  {
+                    value: 300,
+                  },
+                  {
+                    value: 400,
+                  },
+                  {
+                    value: 500,
+                  },
+                  {
+                    value: 600,
+                  },
+                ],
+                subRows: [
+                  {
+                    id: 2,
+                    title: "ARR",
+                    cells: [
+                      {
+                        value: 100,
+                      },
+                      {
+                        value: 200,
+                      },
+                      {
+                        value: 300,
+                      },
+                      {
+                        value: 400,
+                      },
+                      {
+                        value: 500,
+                      },
+                      {
+                        value: 600,
+                      },
+                    ],
+                    subRows: [
+                      {
+                        id: 7,
+                        title: "前Q対比成長率",
+                        cells: [
+                          {
+                            value: 100,
+                          },
+                          {
+                            value: 200,
+                          },
+                          {
+                            value: 300,
+                          },
+                          {
+                            value: 400,
+                          },
+                          {
+                            value: 500,
+                          },
+                          {
+                            value: 600,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    id: 3,
+                    title: "MRR",
+                    cells: [
+                      {
+                        value: 100,
+                      },
+                      {
+                        value: 200,
+                      },
+                      {
+                        value: 300,
+                      },
+                      {
+                        value: 400,
+                      },
+                      {
+                        value: 500,
+                      },
+                      {
+                        value: 600,
+                      },
+                    ],
+                    subRows: [
+                      {
+                        id: 7,
+                        title: "前Q対比成長率",
+                        cells: [
+                          {
+                            value: 100,
+                          },
+                          {
+                            value: 200,
+                          },
+                          {
+                            value: 300,
+                          },
+                          {
+                            value: 400,
+                          },
+                          {
+                            value: 500,
+                          },
+                          {
+                            value: 600,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
               },
             ],
           },
         ],
       },
+    ],
+    subRows: [
       {
-        id: 3,
-        title: "売上(営業)",
-        cells: [
-          {
-            value: 100,
-          },
-          {
-            value: 200,
-          },
-          {
-            value: 300,
-          },
-          {
-            value: 400,
-          },
-          {
-            value: 500,
-          },
-          {
-            value: 600,
-          },
-        ],
+        id: 999,
+        title: "時価総額",
+        cells: [{ value: 100 }, { value: 200 }],
       },
     ],
   },
@@ -198,22 +285,26 @@ export default defineComponent({
       3: true,
     });
 
-    const displayRows = computed<DisplayRow[]>(() =>
-      mergeRowOpenState(rows, rowOpenState.value)
+    const sectionOpenState = ref<SectionOpenState>({
+      1: true,
+    });
+
+    const displaySections = computed<DisplayTableSection[]>(() =>
+      mergeOpenState(sections, sectionOpenState.value, rowOpenState.value)
     );
 
     function onOpenRow(rowId: Row["id"]) {
-      rowOpenState.value[rowId] = true;
+      Vue.set(rowOpenState.value, rowId, true);
     }
 
     function onCloseRow(rowId: Row["id"]) {
-      rowOpenState.value[rowId] = false;
+      Vue.set(rowOpenState.value, rowId, false);
     }
 
     return {
+      displaySections,
       onOpenRow,
       onCloseRow,
-      displayRows,
       headers,
       titleColumnWidth,
     };
@@ -229,5 +320,21 @@ p {
 
 .table_root {
   display: table;
+}
+
+.section_row {
+  background-color: #d4e3f4;
+}
+
+.section_header {
+  padding-left: 10px;
+}
+
+.sub_section_header {
+  margin-left: 20px;
+  padding-left: 10px;
+  width: 50%;
+  border-radius: 4px;
+  background-color: #fdd7db;
 }
 </style>
