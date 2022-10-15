@@ -33,5 +33,6 @@ module RailsVuePlayground
     config.eager_load_paths << Rails.root.join('usecases')
     config.eager_load_paths << Rails.root.join('services')
     config.eager_load_paths << Rails.root.join('blueprinters')
+    config.eager_load_paths << Rails.root.join('values')
   end
 end
