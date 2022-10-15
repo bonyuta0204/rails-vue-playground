@@ -29,5 +29,7 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "warn",
     "vue/multi-word-component-names": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "vue/require-v-for-key": "off",
+    "vue/valid-v-for": "off",
   },
 };
