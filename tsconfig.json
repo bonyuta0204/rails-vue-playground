@@ -17,6 +17,9 @@
     "target": "es5",
     "noEmit": true
   },
+  "vueCompilerOptions": {
+    "experimentalDisableTemplateSupport": true
+  },
   "exclude": ["node_modules", "vendor", "public", "cypress"],
   "compileOnSave": false
 }
