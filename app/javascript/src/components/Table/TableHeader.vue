@@ -10,13 +10,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/composition-api";
+import { defineComponent, PropType } from "@vue/composition-api";
 
 export default defineComponent({
   name: "TableHeader",
   props: {
     header: {
-      type: Array,
+      type: Array as PropType<{ width: number; label: string }[]>,
       required: true,
     },
     titleColumnWidth: {
@@ -24,7 +24,6 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {},
 });
 </script>
 
