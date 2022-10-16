@@ -9,4 +9,12 @@ FactoryBot.define do
     w { 1 }
     text { 'test text widget' }
   end
+
+  factory :graph_widget, class: 'GraphWidget' do
+    dashboard
+    x { 1 }
+    y { 1 }
+    h { 1 }
+    w { 1 }
+  end
 end
