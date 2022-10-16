@@ -61,6 +61,7 @@ GEM
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
     ast (2.4.2)
+    attr_extras (6.2.5)
     backport (1.2.0)
     benchmark (0.2.0)
     bindex (0.8.1)
@@ -154,9 +155,12 @@ GEM
     nokogiri (1.13.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    optimist (3.0.1)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
+    patience_diff (1.2.0)
+      optimist (~> 3.0)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -282,6 +286,10 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    super_diff (0.9.0)
+      attr_extras (>= 6.2.4)
+      diff-lcs
+      patience_diff
     thor (1.2.1)
     tilt (2.0.11)
     tzinfo (2.0.4)
@@ -337,6 +345,7 @@ DEPENDENCIES
   sentry-ruby
   solargraph
   spring
+  super_diff
   tzinfo-data
   web-console (>= 4.1.0)
   webpacker

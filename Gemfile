@@ -45,6 +45,7 @@ group :development, :test do
   gem 'faker'
   gem 'pry'
   gem 'pry-rails'
+  gem 'super_diff'
 end
 
 group :development do
