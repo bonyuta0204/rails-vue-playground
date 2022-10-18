@@ -1,10 +1,11 @@
-import { Dashboard, Layout, Widget } from "@/types/dashboard";
+import { WidgetLayout, Layout, Widget } from "@/types/dashboard";
 
-export function applyDashboardLayout(dashboard: Dashboard, layout: Layout) {
-  const clonedDashboard = JSON.parse(JSON.stringify(dashboard)) as Dashboard;
-
-  const modifedWidgets: Widget[] = layout.map((widgetLayout) => {
-    const targetWidget = dashboard.widgets.find(
+export function applyDashboardLayout(
+  widgetLayouts: WidgetLayout[],
+  layout: Layout
+) {
+  return layout.map((widgetLayout) => {
+    const targetWidget = widgetLayouts.find(
       (widget) => String(widget.id) === widgetLayout.i
     );
 
@@ -18,6 +19,4 @@ export function applyDashboardLayout(dashboard: Dashboard, layout: Layout) {
       w: widgetLayout.w,
     };
   });
-  clonedDashboard.widgets = modifedWidgets;
-  return clonedDashboard;
 }
