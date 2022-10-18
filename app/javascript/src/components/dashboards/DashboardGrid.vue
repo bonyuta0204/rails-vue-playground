@@ -19,8 +19,8 @@ import {
   PropType,
   ref,
 } from "@vue/composition-api";
-import { Dashboard, Layout, WidgetLayout } from "@/types/dashboard";
-import { GridLayout, GridItem } from "vue-grid-layout";
+import { Layout, WidgetLayout } from "@/types/dashboard";
+import { GridLayout } from "vue-grid-layout";
 import { applyDashboardLayout } from "../../lib/helpers/dasboard/dashboard_helper";
 
 /**
@@ -30,7 +30,6 @@ export default defineComponent({
   name: "DashboardGrid",
   components: {
     GridLayout,
-    GridItem,
   },
   props: {
     widgets: {

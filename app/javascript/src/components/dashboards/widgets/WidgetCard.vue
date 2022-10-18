@@ -1,8 +1,6 @@
 <template>
   <div class="widget_card_wrap">
-    <div class="widget_text">
-      {{ widget.text }}
-    </div>
+    <slot></slot>
   </div>
 </template>
 

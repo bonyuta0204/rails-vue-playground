@@ -12,25 +12,26 @@ RSpec.describe Ajax::Widgets::ShowUsecase do
     context 'when widget type is graph' do
       let(:widget) { create(:graph_widget, dashboard: dashboard, options: graph_option) }
 
-      let(:result) do
+      let(:expected_graph_data) do
         {
-          x_axis: [corporation1.name, corporation2.name],
+          x_axis:
+          {
+            categories: [corporation1.name, corporation2.name]
+          },
           series: [
             {
               name: metric1.name,
               data: [
-                MetricValue.find_by(metric: metric1, corporation: corporation1),
-                MetricValue.find_by(metric: metric1, corporation: corporation2)
-              ],
-              y_axis: nil
+                MetricValue.find_by(metric: metric1, corporation: corporation1).value,
+                MetricValue.find_by(metric: metric1, corporation: corporation2).value
+              ]
             },
             {
               name: metric2.name,
               data: [
-                MetricValue.find_by(metric: metric2, corporation: corporation1),
-                MetricValue.find_by(metric: metric2, corporation: corporation2)
-              ],
-              y_axis: 1
+                MetricValue.find_by(metric: metric2, corporation: corporation1).value,
+                MetricValue.find_by(metric: metric2, corporation: corporation2).value
+              ]
             }
           ]
         }
@@ -56,7 +57,7 @@ RSpec.describe Ajax::Widgets::ShowUsecase do
         create(:metric_value, corporation: corporation2, metric: metric2)
       end
 
-      it { is_expected.to eq(result) }
+      it { is_expected.to eq([:ok, widget.attributes.merge({ graph_data: expected_graph_data })]) }
     end
   end
 end

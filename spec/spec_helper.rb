@@ -25,12 +25,12 @@ require 'rspec/rails'
 require 'super_diff/rspec-rails'
 
 connection_config = Rails.application.config.database_configuration['test']
-path = Rails.root.join('db', 'Schemafile')
+path = Rails.root.join('db/Schemafile')
 
 schema = File.read(path)
 Ridgepole::Client.new(connection_config, dump_with_default_fk_name: true).diff(schema, path: path.to_s).migrate
 
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 #
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

@@ -44,6 +44,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry'
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'super_diff'
 end

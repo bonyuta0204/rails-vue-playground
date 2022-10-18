@@ -1,4 +1,4 @@
-import { WidgetLayout, Layout, Widget } from "@/types/dashboard";
+import { WidgetLayout, Layout } from "@/types/dashboard";
 
 export function applyDashboardLayout(
   widgetLayouts: WidgetLayout[],
