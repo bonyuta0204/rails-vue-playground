@@ -16,9 +16,9 @@ module Widgets
             data: corporations.map do |corporation|
               metric_values.detect do |metric_value|
                 metric_value.corporation_id == corporation.id && metric_value.metric_id == series_option.metric_id
-              end
-            end,
-            y_axis: series_option.y_axis }
+              end&.value
+            end }
+          # y_axis: series_option.y_axis
         end
       }
     end
@@ -28,7 +28,9 @@ module Widgets
     attr_reader :option
 
     def x_axis
-      corporations.pluck(:name)
+      {
+        categories: corporations.pluck(:name)
+      }
     end
 
     def metric_values

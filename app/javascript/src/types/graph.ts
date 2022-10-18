@@ -1,6 +1,6 @@
 /* グラフの表示データ */
 export interface GraphData {
-  xAxis: XAxis;
+  x_axis: XAxis;
   series: GraphSeries[];
 }
 
@@ -10,4 +10,6 @@ export interface GraphSeries {
   yAxis?: number;
 }
 
-export interface XAxis {}
+export interface XAxis {
+  categories: string[];
+}

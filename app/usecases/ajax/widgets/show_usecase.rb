@@ -8,12 +8,17 @@ module Ajax
       end
 
       def call
-        case widget.type
-        when 'GraphWidget'
-          widget.attributes.merge(
-            ::Widgets::GraphDataService.new(::Widgets::GraphOption.new(widget.options.deep_symbolize_keys)).execute
-          )
-        end
+        result = case widget.type
+                 when 'GraphWidget'
+                   widget.attributes.merge(
+                     {
+                       graph_data: ::Widgets::GraphDataService.new(
+                         ::Widgets::GraphOption.new(widget.options.deep_symbolize_keys)
+                       ).execute
+                     }
+                   )
+                 end
+        [:ok, result]
       end
 
       private
