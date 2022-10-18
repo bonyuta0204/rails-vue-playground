@@ -6,6 +6,14 @@ export interface Widget {
   w: number;
 }
 
+export interface WidgetLayout {
+  id: number;
+  x: number;
+  y: number;
+  h: number;
+  w: number;
+}
+
 export interface Dashboard {
   id: number;
   name: string;

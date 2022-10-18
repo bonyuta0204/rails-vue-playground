@@ -7,19 +7,7 @@
       is-resizable
       @layout-updated="onLayoutUpdated"
     >
-      <grid-item
-        v-for="(item, i) in gridLayout"
-        :key="item.id"
-        :x="item.x"
-        :y="item.y"
-        :w="item.w"
-        :h="1"
-        :i="String(item.i)"
-        is-draggable
-        is-resizable
-      >
-        <widget-card :widget="dashboard.widgets[i]"> </widget-card>
-      </grid-item>
+      <slot :grid-layout="gridLayout"></slot>
     </grid-layout>
   </div>
 </template>
@@ -31,9 +19,8 @@ import {
   PropType,
   ref,
 } from "@vue/composition-api";
-import { Dashboard, Layout } from "@/types/dashboard";
+import { Dashboard, Layout, WidgetLayout } from "@/types/dashboard";
 import { GridLayout, GridItem } from "vue-grid-layout";
-import WidgetCard from "./widgets/WidgetCard.vue";
 import { applyDashboardLayout } from "../../lib/helpers/dasboard/dashboard_helper";
 
 /**
@@ -44,11 +31,10 @@ export default defineComponent({
   components: {
     GridLayout,
     GridItem,
-    WidgetCard,
   },
   props: {
-    dashboard: {
-      type: Object as PropType<Dashboard>,
+    widgets: {
+      type: Array as PropType<WidgetLayout[]>,
       required: true,
     },
   },
@@ -56,7 +42,7 @@ export default defineComponent({
     const gridLayout = ref<Layout>();
 
     onMounted(() => {
-      gridLayout.value = props.dashboard.widgets.map((widget) => ({
+      gridLayout.value = props.widgets.map((widget) => ({
         x: widget.x,
         y: widget.y,
         h: widget.h,
@@ -67,8 +53,8 @@ export default defineComponent({
 
     function onLayoutUpdated() {
       if (gridLayout.value) {
-        const updatedDashboard: Dashboard = applyDashboardLayout(
-          props.dashboard,
+        const updatedDashboard = applyDashboardLayout(
+          props.widgets,
           gridLayout.value
         );
 
