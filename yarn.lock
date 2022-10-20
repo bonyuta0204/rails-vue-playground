@@ -6321,7 +6321,7 @@ hex-color-regex@^1.1.0:
 
 highcharts-vue@^1.4.0:
   version "1.4.0"
-  resolved "https://registry.npmjs.org/highcharts-vue/-/highcharts-vue-1.4.0.tgz"
+  resolved "https://registry.yarnpkg.com/highcharts-vue/-/highcharts-vue-1.4.0.tgz#4bdaaddc6b9a3eea0df70d29a22ae713d28e4a0c"
   integrity sha512-fTPqJmU/wR/nUEtofbC/iJqcgULGcP3C0Hd4YYCKH2FiiteNs7UidjSM4eYj5Y4ldpOVhwPtNj/m6XwC3ajp6g==
 
 highcharts@^10.1.0:

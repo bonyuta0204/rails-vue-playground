@@ -11,6 +11,10 @@ import router from "../src/router";
 import store from "../src/store";
 import App from "../App.vue";
 
+import HighchartsVue from "highcharts-vue";
+
+Vue.use(HighchartsVue);
+
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";

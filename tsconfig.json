@@ -18,6 +18,7 @@
     "noEmit": true
   },
   "vueCompilerOptions": {
+    "target": 2,
     "experimentalDisableTemplateSupport": true
   },
   "exclude": ["node_modules", "vendor", "public", "cypress"],
