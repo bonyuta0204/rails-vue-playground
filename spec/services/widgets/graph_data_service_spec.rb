@@ -28,23 +28,23 @@ RSpec.describe Widgets::GraphDataService do
 
     let(:result) do
       {
-        x_axis: [corporation1.name, corporation2.name],
+        x_axis: {
+          categories: [corporation1.name, corporation2.name]
+        },
         series: [
           {
             name: metric1.name,
             data: [
-              MetricValue.find_by(metric: metric1, corporation: corporation1),
-              MetricValue.find_by(metric: metric1, corporation: corporation2)
-            ],
-            y_axis: nil
+              MetricValue.find_by(metric: metric1, corporation: corporation1).value,
+              MetricValue.find_by(metric: metric1, corporation: corporation2).value
+            ]
           },
           {
             name: metric2.name,
             data: [
-              MetricValue.find_by(metric: metric2, corporation: corporation1),
-              MetricValue.find_by(metric: metric2, corporation: corporation2)
-            ],
-            y_axis: 1
+              MetricValue.find_by(metric: metric2, corporation: corporation1).value,
+              MetricValue.find_by(metric: metric2, corporation: corporation2).value
+            ]
           }
         ]
       }
