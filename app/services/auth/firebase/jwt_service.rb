@@ -16,8 +16,6 @@ module Auth
         @token = token
       end
 
-      # rubocop: disable Metrics/AbcSize
-      # rubocop: disable Metrics/MethodLength
       # Validates firebase authentication token
       #
       # @raise [InvalidTokenError] validation error
@@ -47,12 +45,9 @@ module Auth
       rescue JWT::DecodeError => e
         raise RailsVuePlaygroundException::UnauthorizedError, e.message
       end
-      # rubocop: enable Metrics/AbcSize
-      # rubocop: enable Metrics/MethodLength
 
       private
 
-      # rubocop: disable Metrics/AbcSize
       # 証明書は毎回取得せずにキャッシュする (要: Rails.cache)
       def fetch_certificates
         cached = Rails.cache.read(CERTS_CACHE_KEY)
@@ -67,7 +62,6 @@ module Auth
 
         body
       end
-      # rubocop: enable Metrics/AbcSize
     end
   end
 end

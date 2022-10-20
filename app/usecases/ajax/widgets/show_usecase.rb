@@ -2,6 +2,7 @@
 
 module Ajax
   module Widgets
+    # show usecase
     class ShowUsecase
       def initialize(params)
         @widget_id = params[:id]
