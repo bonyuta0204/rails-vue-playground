@@ -1,0 +1,7 @@
+on: [push]
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    container: bonyuta0204/github-remainder
+    steps:
+      - uses: actions/checkout@v2
