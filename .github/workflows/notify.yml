@@ -7,6 +7,6 @@ jobs:
       - uses: actions/checkout@v2
       - run: "ls"
       - run: "pwd"
-      - run: "./github-remainder-exe"
+      - run: "/opt/myapp/github-remainder-exe"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
