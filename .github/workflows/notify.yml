@@ -5,6 +5,8 @@ jobs:
     container: bonyuta0204/github-remainder
     steps:
       - uses: actions/checkout@v2
+      - run: "ls"
+      - run: "pwd"
       - run: "./github-remainder-exe"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
